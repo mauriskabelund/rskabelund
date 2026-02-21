@@ -6,7 +6,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;600&display=swap" rel="stylesheet">
-    <title>Patient Alex - Rachel Skabelund</title>
+    <title>AI Case Patient – Biochemistry Application | Rachel Skabelund</title>
     <style>
         * {
             margin: 0;
@@ -224,6 +224,85 @@
             min-height: calc(100vh - 72px);
         }
 
+        .context-banner {
+            background: linear-gradient(135deg, #e8eef5 0%, #f0f4f8 100%);
+            border-bottom: 1px solid rgba(0, 46, 93, 0.12);
+            padding: 1rem 1.5rem;
+            text-align: center;
+        }
+
+        .context-banner h1 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--byu-navy);
+            margin-bottom: 0.35rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .context-banner h1 .badge {
+            background: var(--byu-navy);
+            color: white;
+            font-size: 0.65rem;
+            font-weight: 600;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .context-banner p {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            max-width: 640px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        .context-banner .credit {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+        }
+
+        .example-questions {
+            margin-top: 0.75rem;
+            text-align: left;
+            max-width: 520px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .example-questions summary {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--byu-navy);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            min-height: var(--min-touch-target);
+            padding: 0.25rem 0;
+        }
+
+        .example-questions summary:hover {
+            text-decoration: underline;
+        }
+
+        .example-questions ul {
+            margin-top: 0.5rem;
+            padding-left: 1.25rem;
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .example-questions li {
+            margin-bottom: 0.35rem;
+        }
+
         .alex-status {
             position: absolute;
             top: 1.25rem;
@@ -341,12 +420,34 @@
     <nav class="nav-menu">
         <ul>
             <li><a href="index.html"><span class="nav-icon">🏠</span> Home</a></li>
-            <li><a href="alex.html">Patient (Alex)</a></li>
+            <li><a href="alex.html">🧬 Case Patient</a></li>
             <li><a href="chat.html"><span class="nav-icon">💬</span> AI Chat</a></li>
             <li><a href="ai-guide.html"><span class="nav-icon">📖</span> AI Guide</a></li>
             <li><a href="syllabus.html"><span class="nav-icon">📋</span> Course Syllabus</a></li>
         </ul>
     </nav>
+
+    <section class="context-banner">
+        <h1>
+            AI Case Patient – Biochemistry Application
+            <span class="badge">Mechanisms Only</span>
+        </h1>
+        <p>
+            This AI case patient helps us apply biochemistry concepts in real time. 
+            We're not practicing diagnosis or bedside manner—we're exploring how villous atrophy 
+            impairs specific enzymes, transporters, and surface area at the cellular level.
+        </p>
+        <p class="credit">Case adapted from Dr. Janet Lindsley's celiac malabsorption TBL materials</p>
+        <details class="example-questions">
+            <summary>Example questions to explore →</summary>
+            <ul>
+                <li>What biochemical change would cause steatorrhea in this patient?</li>
+                <li>Which specific transporter is most affected by flattened villi?</li>
+                <li>Show me how disaccharidase deficiency leads to osmotic diarrhea at the cellular level.</li>
+                <li>What enzyme activity is lost when microvilli are destroyed?</li>
+            </ul>
+        </details>
+    </section>
     
     <main>
         <div id="alexStatus" class="alex-status" role="status" aria-live="polite">Loading Patient Alex...</div>

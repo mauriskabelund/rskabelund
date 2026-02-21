@@ -894,7 +894,7 @@
     <nav class="nav-menu">
         <ul>
             <li><a href="index.html"><span class="nav-icon">🏠</span> Home</a></li>
-            <li><a href="alex.html"><span class="nav-icon">🧑‍⚕️</span> Patient Alex</a></li>
+            <li><a href="alex.html"><span class="nav-icon">🧬</span> Case Patient</a></li>
             <li><a href="chat.html"><span class="nav-icon">💬</span> AI Chat</a></li>
             <li><a href="ai-guide.html"><span class="nav-icon">📖</span> AI Guide</a></li>
             <li><a href="syllabus.html"><span class="nav-icon">📋</span> Course Syllabus</a></li>
@@ -1259,6 +1259,12 @@ Answer questions helpfully and concisely. If asked about something not in the sy
 
             const first = focusableElements[0];
             const last = focusableElements[focusableElements.length - 1];
+
+            if (!chatModal.contains(document.activeElement)) {
+                event.preventDefault();
+                first.focus();
+                return;
+            }
 
             if (event.shiftKey && document.activeElement === first) {
                 event.preventDefault();

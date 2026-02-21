@@ -6,7 +6,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;600&display=swap" rel="stylesheet">
-    <title>AI Case Patient – Biochemistry Application | Rachel Skabelund</title>
+    <title>AI Nutrient Metabolism Tutor | Rachel Skabelund</title>
     <style>
         * {
             margin: 0;
@@ -420,7 +420,7 @@
     <nav class="nav-menu">
         <ul>
             <li><a href="index.html"><span class="nav-icon">🏠</span> Home</a></li>
-            <li><a href="alex.html">🧬 Case Patient</a></li>
+            <li><a href="tutor.html">🧬 AI Tutor</a></li>
             <li><a href="chat.html"><span class="nav-icon">💬</span> AI Chat</a></li>
             <li><a href="ai-guide.html"><span class="nav-icon">📖</span> AI Guide</a></li>
             <li><a href="syllabus.html"><span class="nav-icon">📋</span> Course Syllabus</a></li>
@@ -429,32 +429,33 @@
 
     <section class="context-banner">
         <h1>
-            AI Case Patient – Biochemistry Application
-            <span class="badge">Mechanisms Only</span>
+            AI Nutrient Metabolism Tutor
+            <span class="badge">Mechanisms Explorer</span>
         </h1>
         <p>
-            This AI case patient helps us apply biochemistry concepts in real time. 
-            We're not practicing diagnosis or bedside manner—we're exploring how villous atrophy 
-            impairs specific enzymes, transporters, and surface area at the cellular level.
+            Meet your always-available course assistant for exploring biochemical mechanisms.
+            Ask questions about digestion, absorption, transport, and metabolism pathways—this 
+            tutor helps you apply what you know, identify gaps, and dig into the science.
         </p>
-        <p class="credit">Case adapted from Dr. Janet Lindsley's celiac malabsorption TBL materials</p>
+        <p class="credit">TBL structure adapted from Dr. Janet Lindsley's celiac malabsorption case</p>
         <details class="example-questions">
-            <summary>Example questions to explore →</summary>
+            <summary>Try asking →</summary>
             <ul>
-                <li>What biochemical change would cause steatorrhea in this patient?</li>
-                <li>Which specific transporter is most affected by flattened villi?</li>
-                <li>Show me how disaccharidase deficiency leads to osmotic diarrhea at the cellular level.</li>
-                <li>What enzyme activity is lost when microvilli are destroyed?</li>
+                <li>Explain at the cellular level how damaged villi reduce peptide absorption.</li>
+                <li>What happens biochemically if lactase is deficient?</li>
+                <li>Compare the Na-glucose cotransporter vs. facilitated diffusion for fructose.</li>
+                <li>How do brush-border enzymes differ for carb vs. protein digestion?</li>
+                <li>What's the role of PEPT1 in amino acid absorption?</li>
             </ul>
         </details>
     </section>
     
     <main>
-        <div id="alexStatus" class="alex-status" role="status" aria-live="polite">Loading Patient Alex...</div>
-        <div id="did-agent" aria-label="Patient Alex interactive simulation"></div>
+        <div id="alexStatus" class="alex-status" role="status" aria-live="polite">Loading AI Tutor...</div>
+        <div id="did-agent" aria-label="AI Nutrient Metabolism Tutor interactive chat"></div>
         <noscript>
             <div class="alex-status error" style="position: static; transform: none; margin: 1rem auto;">
-                JavaScript is required to load Patient Alex. Please enable JavaScript and refresh this page.
+                JavaScript is required to load the AI Tutor. Please enable JavaScript and refresh this page.
             </div>
         </noscript>
     </main>
@@ -477,7 +478,7 @@
         function showAlexError(message) {
             if (!alexStatus) return;
             alexStatus.classList.add('error');
-            alexStatus.innerHTML = `${message} <a class="alex-fallback-link" href="alex.html">Retry</a>`;
+            alexStatus.innerHTML = `${message} <a class="alex-fallback-link" href="tutor.html">Retry</a>`;
             alexStatus.hidden = false;
         }
 
@@ -499,7 +500,7 @@
 
         window.setTimeout(() => {
             if (alexContainer && alexContainer.children.length === 0) {
-                showAlexError('Patient Alex failed to load.');
+                showAlexError('AI Tutor failed to load.');
             }
         }, 10000);
     </script>
@@ -513,7 +514,7 @@
         data-name="did-agent" 
         data-monitor="true" 
         data-target-id="did-agent"
-        onerror="showAlexError('Unable to load Patient Alex right now.')">
+        onerror="showAlexError('Unable to load AI Tutor right now.')">
     </script>
     <script src="auth.js"></script>
 </body>

@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/alex.html",
+      "destination": "/tutor.html",
+      "permanent": true
+    }
+  ]
+}

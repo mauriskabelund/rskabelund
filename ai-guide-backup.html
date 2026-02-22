@@ -294,54 +294,6 @@
             margin: 0 auto;
         }
         
-        .hero-bednar-quote {
-            background: rgba(255, 255, 255, 0.1);
-            border-left: 4px solid var(--gold);
-            padding: 1.5rem 2rem;
-            margin: 2rem auto;
-            max-width: 700px;
-            border-radius: 0 var(--radius-md) var(--radius-md) 0;
-        }
-        
-        .hero-bednar-quote blockquote {
-            font-family: 'Merriweather', Georgia, serif;
-            font-size: 1.1rem;
-            font-style: italic;
-            color: rgba(255, 255, 255, 0.95);
-            line-height: 1.8;
-            margin-bottom: 1rem;
-        }
-        
-        .hero-bednar-quote cite {
-            font-size: 0.95rem;
-            color: rgba(255, 255, 255, 0.7);
-            font-style: normal;
-        }
-        
-        .hero-bednar-quote cite a {
-            color: var(--gold);
-            text-decoration: none;
-        }
-        
-        .hero-bednar-quote cite a:hover {
-            text-decoration: underline;
-        }
-        
-        .hero-links {
-            margin-top: 1.5rem;
-            font-size: 1rem;
-        }
-        
-        .hero-links a {
-            color: var(--gold);
-            text-decoration: none;
-            font-weight: 500;
-        }
-        
-        .hero-links a:hover {
-            text-decoration: underline;
-        }
-        
         .scroll-indicator {
             position: absolute;
             bottom: 40px;
@@ -968,28 +920,6 @@
             margin-top: 3rem;
         }
         
-        .mission-statement {
-            background: white;
-            border-left: 4px solid var(--gold);
-            padding: 2rem;
-            margin: 2.5rem auto;
-            max-width: 700px;
-            text-align: center;
-            border-radius: 0 12px 12px 0;
-            box-shadow: var(--shadow-sm);
-        }
-        
-        .mission-statement h3 {
-            color: var(--byu-navy);
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-        }
-        
-        .mission-statement p {
-            text-align: center;
-            margin-bottom: 0.75rem;
-        }
-        
         .btn {
             display: inline-flex;
             align-items: center;
@@ -1171,7 +1101,6 @@
             transform: translateY(0);
         }
     </style>
-    <link rel="stylesheet" href="nav.css">
 </head>
 <body>
     <header>
@@ -1204,24 +1133,40 @@
     <nav class="guide-toc guide-toc-desktop" aria-label="AI Guide table of contents">
         <div class="guide-toc-title">On this page</div>
         <ul class="toc-list">
-            <li class="toc-item"><a class="toc-link" href="#getting-started">Part 1 · Getting Started</a></li>
-            <li class="toc-item"><a class="toc-link" href="#models-access">Part 2 · AI Models & Access</a></li>
-            <li class="toc-item"><a class="toc-link" href="#privacy-hipaa">Part 3 · Privacy & HIPAA</a></li>
-            <li class="toc-item"><a class="toc-link" href="#better-results">Part 4 · Getting Better Results</a></li>
-            <li class="toc-item"><a class="toc-link" href="#critical-thinking">Part 5 · Critical Thinking</a></li>
-            <li class="toc-item"><a class="toc-link" href="#quick-reference">Part 6 · Quick Reference</a></li>
+            <li class="toc-item"><a class="toc-link" href="#mirror-mistake">Part 1 · The #1 Mistake</a></li>
+            <li class="toc-item"><a class="toc-link" href="#personal-tutor">Part 2 · AI as Tutor</a></li>
+            <li class="toc-item"><a class="toc-link" href="#model-landscape">Part 3 · Models Guide</a></li>
+            <li class="toc-item"><a class="toc-link" href="#privacy-hipaa">Part 4 · Privacy & HIPAA</a></li>
+            <li class="toc-item"><a class="toc-link" href="#course-resources">Part 5 · Course Resources</a></li>
+            <li class="toc-item"><a class="toc-link" href="#context-window">Part 6 · Context Window</a></li>
+            <li class="toc-item"><a class="toc-link" href="#feed-sources">Part 7 · Feed It Sources</a></li>
+            <li class="toc-item"><a class="toc-link" href="#always-verify">Part 8 · Always Verify</a></li>
+            <li class="toc-item"><a class="toc-link" href="#agency">Part 9 · Agency</a></li>
+            <li class="toc-item"><a class="toc-link" href="#misconceptions">Part 10 · Misconceptions</a></li>
+            <li class="toc-item"><a class="toc-link" href="#prompt-templates">Part 11 · Prompt Templates</a></li>
+            <li class="toc-item"><a class="toc-link" href="#when-not-to-use-ai">Part 12 · When Not to Use AI</a></li>
+            <li class="toc-item"><a class="toc-link" href="#power-user-checklist">Part 13 · Checklist</a></li>
+            <li class="toc-item"><a class="toc-link" href="#responsible-use">Part 14 · Responsible Use</a></li>
         </ul>
     </nav>
 
     <details class="guide-toc guide-toc-mobile">
         <summary>On this page</summary>
         <ul class="toc-list">
-            <li class="toc-item"><a class="toc-link" href="#getting-started">Part 1 · Getting Started</a></li>
-            <li class="toc-item"><a class="toc-link" href="#models-access">Part 2 · AI Models & Access</a></li>
-            <li class="toc-item"><a class="toc-link" href="#privacy-hipaa">Part 3 · Privacy & HIPAA</a></li>
-            <li class="toc-item"><a class="toc-link" href="#better-results">Part 4 · Getting Better Results</a></li>
-            <li class="toc-item"><a class="toc-link" href="#critical-thinking">Part 5 · Critical Thinking</a></li>
-            <li class="toc-item"><a class="toc-link" href="#quick-reference">Part 6 · Quick Reference</a></li>
+            <li class="toc-item"><a class="toc-link" href="#mirror-mistake">Part 1 · The #1 Mistake</a></li>
+            <li class="toc-item"><a class="toc-link" href="#personal-tutor">Part 2 · AI as Tutor</a></li>
+            <li class="toc-item"><a class="toc-link" href="#model-landscape">Part 3 · Models Guide</a></li>
+            <li class="toc-item"><a class="toc-link" href="#privacy-hipaa">Part 4 · Privacy & HIPAA</a></li>
+            <li class="toc-item"><a class="toc-link" href="#course-resources">Part 5 · Course Resources</a></li>
+            <li class="toc-item"><a class="toc-link" href="#context-window">Part 6 · Context Window</a></li>
+            <li class="toc-item"><a class="toc-link" href="#feed-sources">Part 7 · Feed It Sources</a></li>
+            <li class="toc-item"><a class="toc-link" href="#always-verify">Part 8 · Always Verify</a></li>
+            <li class="toc-item"><a class="toc-link" href="#agency">Part 9 · Agency</a></li>
+            <li class="toc-item"><a class="toc-link" href="#misconceptions">Part 10 · Misconceptions</a></li>
+            <li class="toc-item"><a class="toc-link" href="#prompt-templates">Part 11 · Prompt Templates</a></li>
+            <li class="toc-item"><a class="toc-link" href="#when-not-to-use-ai">Part 12 · When Not to Use AI</a></li>
+            <li class="toc-item"><a class="toc-link" href="#power-user-checklist">Part 13 · Checklist</a></li>
+            <li class="toc-item"><a class="toc-link" href="#responsible-use">Part 14 · Responsible Use</a></li>
         </ul>
     </details>
 
@@ -1230,21 +1175,17 @@
         <div class="hero-content">
             <div class="hero-badge">A Guide for Medical Students</div>
             <h1>Mastering AI in Medicine</h1>
-            <div class="hero-bednar-quote">
-                <blockquote>"Innovations such as artificial intelligence [can] both (1) assist you in receiving magnificent blessings and (2) diminish and suffocate your moral agency. Please do not allow the supposed accuracy, speed, and ease of modern technologies to entice you to avoid or circumvent the righteous work that invites into your life the blessings you will need."</blockquote>
-                <cite>— Elder David A. Bednar, <a href="https://www.churchofjesuschrist.org/study/broadcasts/worldwide-devotional-for-young-adults/2024/11/13bednar?lang=eng" target="_blank">BYU Devotional, January 2024</a></cite>
-            </div>
             <p class="hero-subtitle">Understanding how to wield AI effectively isn't just a tech skill — it's becoming a clinical competency. This guide will transform how you learn, study, and prepare for your calling as a healer.</p>
-            <p class="hero-links">📘 <a href="https://genai.byu.edu/" target="_blank">BYU Official AI Guidelines</a></p>
+            <p class="hero-quote">"AI won't replace doctors. But doctors who understand AI will have capabilities those who don't simply can't match."</p>
         </div>
         <div class="scroll-indicator">Begin</div>
     </section>
 
     <!-- Section 1: The Mirror -->
-    <section class="section-light" id="getting-started">
+    <section class="section-light" id="mirror-mistake">
         <div class="section-inner fade-in">
             <div class="section-number">Part 1</div>
-            <h2>Getting Started with AI</h2>
+            <h2>The #1 Mistake Everyone Makes</h2>
             <p class="section-subtitle">Why does AI give me generic answers?</p>
             
             <p>Here's the truth most people never realize: <strong>AI is a mirror.</strong> Vague questions get vague answers. Specific, context-rich questions get expert-level responses.</p>
@@ -1255,7 +1196,7 @@
             </div>
             
             <div class="example-block">
-                <div class="example-label good">✓ Effective prompting</div>
+                <div class="example-label good">✓ What power users type</div>
                 <div class="example-content good">"I'm a second-year medical student studying for Step 1. Explain the differential diagnosis for acute chest pain in a 55-year-old male with diabetes and hypertension, organized by most likely etiology. Include the key distinguishing features for each."</div>
             </div>
             
@@ -1267,139 +1208,274 @@
         </div>
     </section>
 
-    <!-- Section 2: Models & Access -->
-    <section class="section-light" id="models-access">
+    <!-- Section 2: Personal Tutor -->
+    <section class="section-cream" id="personal-tutor">
         <div class="section-inner fade-in">
             <div class="section-number">Part 2</div>
-            <h2>AI Models & Access</h2>
-            <p class="section-subtitle">Which tools to use and when</p>
+            <h2>AI as Your Personal Tutor</h2>
+            <p class="section-subtitle">Accelerate your learning — don't skip it</p>
             
-            <p>Not all AI is created equal. Here's what you need to know:</p>
+            <p>Here's the mindset shift that separates students who thrive from those who struggle:</p>
             
-            <h3>General-Purpose AI Models</h3>
-            <p>Use these for general studying, concept explanations, and basic questions:</p>
+            <p><strong>❌ Replacement mindset:</strong> "AI can write my notes and answer questions so I don't have to learn."</p>
+            
+            <p><strong>✓ Acceleration mindset:</strong> "AI can explain things 15 different ways until one clicks, quiz me relentlessly, and help me build understanding faster than ever before."</p>
+            
+            <p><strong>AI is the most patient teacher you'll ever have.</strong> It will explain the Krebs cycle using a pizza delivery analogy if that's what helps. It will generate 50 practice questions at 2am without complaining. It will break down a complex paper paragraph by paragraph until you actually understand it.</p>
+            
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Without AI</th>
+                            <th>With AI (Used Well)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Read the chapter, hope it sticks</td>
+                            <td>Read the chapter, then ask AI to quiz you and explain gaps</td>
+                        </tr>
+                        <tr>
+                            <td>Re-read highlighted notes passively</td>
+                            <td>Ask AI to generate clinical vignettes from your notes</td>
+                        </tr>
+                        <tr>
+                            <td>Struggle alone with confusing concepts</td>
+                            <td>Get instant, personalized explanations until it clicks</td>
+                        </tr>
+                        <tr>
+                            <td>Passive review before exams</td>
+                            <td>Active retrieval practice on demand, any time</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <p><strong>The key insight:</strong> AI doesn't learn for you — it creates more opportunities for <em>you</em> to learn. Every explanation you request, every quiz you take, every "explain that differently" builds understanding that passive reading never will.</p>
+            
+            <div class="try-this">
+                <div class="try-this-label">💡 Try This Today</div>
+                <div class="try-this-content">"I just learned about [topic] but I'm shaky on it. First, quiz me with 5 questions to see what I actually know. Then explain the concepts I got wrong using simple analogies. Finally, give me 3 more questions to confirm I understand."</div>
+            </div>
+            
+            <p>That single prompt creates a complete active learning cycle that would have taken hours to set up manually.</p>
+            
+            <div class="gospel-quote">
+                <blockquote>
+                    "Innovations such as artificial intelligence [can] both (1) assist you in receiving magnificent blessings and (2) diminish and suffocate your moral agency. Please do not allow the supposed accuracy, speed, and ease of modern technologies to entice you to avoid or circumvent the righteous work that invites into your life the blessings you will need. My beloved brothers and sisters, there are no spiritual shortcuts or quick fixes."
+                </blockquote>
+                <cite>— <strong>Elder David A. Bednar</strong>, BYU Devotional, January 2024 (<a href="https://www.churchofjesuschrist.org/study/broadcasts/worldwide-devotional-for-young-adults/2024/11/13bednar?lang=eng" target="_blank">source</a>)</cite>
+            </div>
+            
+            <p>The key distinction: use AI to <em>create more opportunities</em> to learn — not to skip the learning itself.</p>
+        </div>
+    </section>
+
+    <!-- Section 3: Not All AI -->
+    <section class="section-light" id="model-landscape">
+        <div class="section-inner fade-in">
+            <div class="section-number">Part 3</div>
+            <h2>Not All AI Is Created Equal</h2>
+            <p class="section-subtitle">A comprehensive guide to current models</p>
+            
+            <p>Choosing the right model for the task is like choosing the right specialist for a consult. Here's what's available:</p>
             
             <div class="table-wrapper">
                 <table>
                     <thead>
                         <tr>
                             <th>Model</th>
-                            <th>Access</th>
+                            <th>Provider</th>
+                            <th>Context</th>
                             <th>Best For</th>
+                            <th>Speed</th>
+                            <th>Cost</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><strong>ChatGPT</strong></td>
-                            <td><a href="https://chat.openai.com" target="_blank">chat.openai.com</a></td>
-                            <td>General questions, explanations, study help</td>
+                            <td><strong>GPT-4o</strong></td>
+                            <td>OpenAI</td>
+                            <td>128K</td>
+                            <td>Daily driver — fast, smart, multimodal (images, audio)</td>
+                            <td>⚡⚡⚡</td>
+                            <td>$$</td>
                         </tr>
                         <tr>
-                            <td><strong>Claude</strong></td>
-                            <td><a href="https://claude.ai" target="_blank">claude.ai</a></td>
-                            <td>Nuanced analysis, longer documents, careful reasoning</td>
+                            <td><strong>GPT-4 Turbo</strong></td>
+                            <td>OpenAI</td>
+                            <td>128K</td>
+                            <td>Complex reasoning, long documents, research</td>
+                            <td>⚡⚡</td>
+                            <td>$$$</td>
                         </tr>
                         <tr>
-                            <td><strong>Gemini</strong></td>
-                            <td><a href="https://gemini.google.com" target="_blank">gemini.google.com</a></td>
-                            <td>Google integration, multimodal tasks</td>
+                            <td><strong>Claude 3.5 Sonnet</strong></td>
+                            <td>Anthropic</td>
+                            <td>200K</td>
+                            <td>Nuanced writing, analysis, coding, careful reasoning</td>
+                            <td>⚡⚡⚡</td>
+                            <td>$$</td>
                         </tr>
                         <tr>
-                            <td><strong>Grok</strong></td>
-                            <td><a href="https://x.com/i/grok" target="_blank">x.com/i/grok</a></td>
-                            <td>Real-time information, current events</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            
-            <h3>Medical-Specific AI Tools</h3>
-            <p>For clinical questions, case analysis, and medical decision support — use these specialized tools:</p>
-            
-            <div class="table-wrapper">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Tool</th>
-                            <th>Access</th>
-                            <th>Best For</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>OpenEvidence</strong></td>
-                            <td><a href="https://openevidence.com" target="_blank">openevidence.com</a></td>
-                            <td>Evidence-based clinical questions, citations included</td>
+                            <td><strong>Claude 3 Opus</strong></td>
+                            <td>Anthropic</td>
+                            <td>200K</td>
+                            <td>Deepest reasoning, complex research synthesis</td>
+                            <td>⚡</td>
+                            <td>$$$$</td>
                         </tr>
                         <tr>
-                            <td><strong>Amboss</strong></td>
-                            <td><a href="https://amboss.com" target="_blank">amboss.com</a></td>
-                            <td>Medical knowledge, Step prep, clinical reasoning</td>
+                            <td><strong>Gemini 1.5 Pro</strong></td>
+                            <td>Google</td>
+                            <td>1M+</td>
+                            <td>Massive documents, video analysis, multimodal</td>
+                            <td>⚡⚡</td>
+                            <td>$$</td>
                         </tr>
                         <tr>
-                            <td><strong>UpToDate</strong></td>
-                            <td><a href="https://uptodate.com" target="_blank">uptodate.com</a></td>
-                            <td>Clinical decision support, treatment guidelines</td>
+                            <td><strong>GPT-4o Mini</strong></td>
+                            <td>OpenAI</td>
+                            <td>128K</td>
+                            <td>Quick tasks, cost-conscious, high volume</td>
+                            <td>⚡⚡⚡⚡</td>
+                            <td>$</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Claude 3 Haiku</strong></td>
+                            <td>Anthropic</td>
+                            <td>200K</td>
+                            <td>Fast drafts, simple questions, quick lookups</td>
+                            <td>⚡⚡⚡⚡</td>
+                            <td>$</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Grok 2</strong></td>
+                            <td>xAI</td>
+                            <td>128K</td>
+                            <td>Real-time info, unfiltered responses, creative tasks</td>
+                            <td>⚡⚡⚡</td>
+                            <td>$$</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Grok 2 Mini</strong></td>
+                            <td>xAI</td>
+                            <td>128K</td>
+                            <td>Fast queries, current events, witty explanations</td>
+                            <td>⚡⚡⚡⚡</td>
+                            <td>$</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             
             <div class="callout callout-gold">
-                <p><strong>💡 When to use which:</strong> General inquiries and basic study questions → use ChatGPT, Claude, Gemini, or Grok. Medical cases and clinical questions → use OpenEvidence, Amboss, or UpToDate for more detailed and precise answers with proper citations.</p>
+                <p><strong>🧠 Reasoning Models:</strong> For complex medical reasoning — differential diagnosis, treatment planning, case analysis — look for "reasoning" or "thinking" modes. OpenAI's o1 and Claude's extended thinking spend more time reasoning before answering, dramatically improving accuracy on complex problems. Worth the extra wait for high-stakes questions.</p>
             </div>
             
-            <h3>Your AI Access for This Course</h3>
+            <p><strong>Why this matters:</strong> Using a lightweight model for complex differential diagnosis is like asking a first-year to run a tumor board. Match the tool to the task.</p>
             
-            <p><strong>🌐 Cloud Models — Via This Website:</strong> You have access to state-of-the-art AI models (GPT-4o, Claude, and more) directly through the <a href="chat.html" style="color: var(--byu-navy); font-weight: 600;">AI Chat</a> on this website. Use these models at no cost for your studies.</p>
-            
-            <p><strong>🎓 Set Up Your Own Access:</strong> Consider creating free accounts with tools like <a href="https://openevidence.com" target="_blank" style="color: var(--byu-navy); font-weight: 600;">OpenEvidence</a> for personalized medical tutoring. Having your own accounts lets you build a history of interactions, get tailored recommendations, and continue learning beyond this course.</p>
+            <div class="callout">
+                <p><strong>Pro tip:</strong> If an AI gives you a shallow answer, it might not be the prompt — it might be the model. Try a more capable one before rewriting your question.</p>
+            </div>
         </div>
     </section>
 
     <!-- Section: Cloud vs Local / HIPAA -->
     <section class="section-cream" id="privacy-hipaa">
         <div class="section-inner fade-in">
-            <div class="section-number">Part 3</div>
-            <h2>Privacy & HIPAA</h2>
-            <p class="section-subtitle">The one rule you must follow</p>
+            <div class="section-number">Part 4</div>
+            <h2>Cloud vs Local: Privacy & HIPAA</h2>
+            <p class="section-subtitle">Understanding where your data goes — and why it matters</p>
             
-            <div class="callout" style="border-left-color: #c53030; background: #fff8f8;">
-                <p style="font-size: 1.2rem;"><strong>🚨 The Rule:</strong> NEVER put patient data (PHI) directly into any AI model. Period.</p>
+            <p>When you use AI, your prompts go <em>somewhere</em>. Understanding where matters — especially in healthcare.</p>
+            
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>How It Works</th>
+                            <th>Privacy</th>
+                            <th>Best For</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Cloud AI</strong><br><span style="font-size:0.85rem;color:#666">ChatGPT, Claude, Gemini</span></td>
+                            <td>Your prompts are sent to company servers for processing</td>
+                            <td>⚠️ Data may be stored, used for training (check policies)</td>
+                            <td>General learning, non-sensitive questions</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Local/Self-Hosted AI</strong><br><span style="font-size:0.85rem;color:#666">Llama, Mistral, Qwen</span></td>
+                            <td>Model runs on your device or a private server — data never leaves</td>
+                            <td>✅ Complete privacy, no external transmission</td>
+                            <td>Sensitive scenarios, HIPAA considerations</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Enterprise/HIPAA-Compliant</strong><br><span style="font-size:0.85rem;color:#666">Azure OpenAI, AWS Bedrock</span></td>
+                            <td>Cloud AI with BAAs, data isolation, and compliance certifications</td>
+                            <td>✅ HIPAA compliant with proper setup</td>
+                            <td>Clinical environments, real patient data</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
             
-            <p>This applies to <em>all</em> AI tools — ChatGPT, Claude, Gemini, Grok, and any other consumer AI. These tools are NOT HIPAA compliant.</p>
+            <div class="callout" style="border-left-color: #c53030; background: #fff8f8;">
+                <p><strong>🚨 Critical HIPAA Rule:</strong> Never paste real patient information (PHI) into consumer AI tools like ChatGPT, Claude, or Gemini. These are NOT HIPAA compliant. Instead: de-identify completely, use fictional cases based on the clinical pattern, or use approved institutional tools.</p>
+            </div>
             
-            <h3>What counts as PHI?</h3>
+            <p><strong>Open Source Models Worth Knowing:</strong></p>
             <ul>
-                <li>Names, dates of birth, addresses</li>
-                <li>Medical record numbers, account numbers</li>
-                <li>Any information that could identify a specific patient</li>
-                <li>Photos, imaging, or documents containing patient info</li>
+                <li><strong>Llama 3</strong> (Meta) — Excellent general-purpose model, runs locally on good hardware</li>
+                <li><strong>Mistral / Mixtral</strong> — Fast, efficient, great for coding and reasoning</li>
+                <li><strong>Qwen 2.5</strong> (Alibaba) — Strong multilingual and medical knowledge</li>
+                <li><strong>Phi-3</strong> (Microsoft) — Smaller but surprisingly capable, runs on laptops</li>
             </ul>
             
-            <h3>What CAN you do?</h3>
-            <ul>
-                <li>Ask general medical questions without patient details</li>
-                <li>Use completely fictional case scenarios</li>
-                <li>Discuss disease mechanisms, treatment principles, pathophysiology</li>
-                <li>Get help understanding concepts from your coursework</li>
-            </ul>
+            <p>Open source models are improving rapidly. They offer privacy advantages and can be fine-tuned for specific medical domains — but currently lag behind frontier models for complex reasoning.</p>
+        </div>
+    </section>
+
+    <!-- Section: Course Resources -->
+    <section class="section-light" id="course-resources">
+        <div class="section-inner fade-in">
+            <div class="section-number">Part 5</div>
+            <h2>Your AI Access for This Course</h2>
+            <p class="section-subtitle">Tools provided for your learning</p>
+            
+            <div class="resource-card">
+                <div class="resource-icon">🌐</div>
+                <div class="resource-content">
+                    <h3>Powerful Cloud Models — Via This Website</h3>
+                    <p>You have access to state-of-the-art AI models (GPT-4o, Claude, and more) directly through the <a href="chat.html" style="color: var(--byu-navy); font-weight: 600;">AI Chat</a> on this website. Log in with your course credentials to use these models at no cost for your studies.</p>
+                </div>
+            </div>
+            
+            <div class="resource-card">
+                <div class="resource-icon">🖥️</div>
+                <div class="resource-content">
+                    <h3>Local Open Source Models — Rachel's Server</h3>
+                    <p>Want to experiment with open source models? During this course, you'll have access to a dedicated server running local AI models. This gives you hands-on experience with privacy-preserving AI and lets you explore alternatives to commercial services.</p>
+                    <p style="margin-top: 0.75rem; font-size: 0.9rem; color: #666;">Access details will be provided in class. Great for: learning about local deployment, HIPAA-friendly experimentation, and understanding the open source ecosystem.</p>
+                </div>
+            </div>
             
             <div class="callout callout-gold">
-                <p><strong>💡 Bottom line:</strong> When in doubt, don't include it. Use AI to learn concepts and explore ideas — never to process real patient information. This may change as HIPAA-compliant AI tools become available in clinical settings, but for now: no patient data in AI.</p>
+                <p><strong>Why both?</strong> Cloud models offer cutting-edge capabilities. Local models offer privacy and independence. As a future physician, understanding both gives you flexibility to choose the right tool for each situation — and prepares you for a healthcare landscape where AI deployment choices matter.</p>
             </div>
         </div>
     </section>
 
-    <!-- Section 4: Getting Better Results -->
-    <section class="section-cream" id="better-results">
+    <!-- Section 6: Context Window -->
+    <section class="section-cream" id="context-window">
         <div class="section-inner fade-in">
-            <div class="section-number">Part 4</div>
-            <h2>Getting Better Results</h2>
-            <p class="section-subtitle">Techniques for more useful AI responses</p>
-            
-            <h3>The Context Window</h3>
+            <div class="section-number">Part 6</div>
+            <h2>The Context Window</h2>
+            <p class="section-subtitle">Your secret weapon for better responses</p>
             
             <p>The "context window" is how much information AI can hold in memory during a conversation. Think of it as working memory — the bigger it is, the more information AI can reference at once.</p>
             
@@ -1417,13 +1493,20 @@
             </ol>
             
             <div class="try-this">
-                <div class="try-this-label">⚡ Try This</div>
+                <div class="try-this-label">⚡ Power Move</div>
                 <div class="try-this-content">"Here are my notes from today's cardiology lecture: [paste notes]. Now quiz me on the key concepts with clinical vignette-style questions similar to Step 1."</div>
             </div>
             
             <p>You just created a personalized study tool that knows exactly what you learned today.</p>
-            
-            <h3>Feed It Sources, Get Better Answers</h3>
+        </div>
+    </section>
+
+    <!-- Section 7: Feed It Sources -->
+    <section class="section-light" id="feed-sources">
+        <div class="section-inner fade-in">
+            <div class="section-number">Part 7</div>
+            <h2>Feed It Sources, Get Better Answers</h2>
+            <p class="section-subtitle">AI doesn't know what it doesn't know</p>
             
             <p>AI models have knowledge cutoffs and can "hallucinate" — confidently stating incorrect information. The solution? <strong>Give it the source material.</strong></p>
             
@@ -1452,14 +1535,12 @@
         </div>
     </section>
 
-    <!-- Section 5: Critical Thinking -->
-    <section class="section-cream" id="critical-thinking">
+    <!-- Section 8: Verify -->
+    <section class="section-cream" id="always-verify">
         <div class="section-inner fade-in">
-            <div class="section-number">Part 5</div>
-            <h2>Critical Thinking</h2>
-            <p class="section-subtitle">Using AI responsibly and effectively</p>
-            
-            <h3>Always Verify</h3>
+            <div class="section-number">Part 8</div>
+            <h2>Always Verify</h2>
+            <p class="section-subtitle">The trust but verify rule</p>
             
             <p><strong>AI is confident. That doesn't mean it's correct.</strong></p>
             
@@ -1469,7 +1550,7 @@
             
             <ul>
                 <li>🔍 <strong>Web search</strong> — Sanity check facts and statistics</li>
-                <li>🔄 <strong>Cross-check with multiple AI sources</strong> — Compare answers across different models to identify inconsistencies</li>
+                <li>📚 <strong>UpToDate</strong> — Gold standard for clinical questions</li>
                 <li>📖 <strong>Primary sources</strong> — PubMed, original guidelines</li>
                 <li>👩‍⚕️ <strong>Faculty & attendings</strong> — When stakes are high</li>
             </ul>
@@ -1484,8 +1565,76 @@
                 </blockquote>
                 <cite>— <strong>Elder Gerrit W. Gong</strong>, BYU Education Week, August 2025 (<a href="https://newsroom.churchofjesuschrist.org/article/elder-gong-ai-gospel-context-byu-education-week" target="_blank">source</a>)</cite>
             </div>
+        </div>
+    </section>
+
+    <!-- Section 9: Agency -->
+    <section class="agency-section" id="agency">
+        <div class="section-inner fade-in">
+            <div class="section-number" style="color: rgba(255,255,255,0.6);">Part 9</div>
+            <h2>Your Agency Is Sacred</h2>
+            <p class="section-subtitle">Don't outsource it to a machine</p>
             
-            <h3>Common Misconceptions</h3>
+            <p>As students at BYU, you understand agency differently than most. It's not just about independence or autonomy — it's a divine gift. The ability to act, to choose, to reason, and to bear responsibility for those choices is central to who you are and who you're becoming.</p>
+            
+            <p>AI can't want things. It can't care about outcomes. It has no conscience, no accountability, and no growth. When you delegate your thinking entirely to a machine, you're not just being lazy — you're stepping back from the very thing that makes you <em>you</em>.</p>
+            
+            <div class="principle">
+                <p>"Use AI to inform your choices, never to make them for you."</p>
+            </div>
+            
+            <p><strong>Think of any task as three parts:</strong></p>
+            
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Stage</th>
+                            <th>Who Owns It</th>
+                            <th>Example</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>The Beginning</strong><br>Defining the problem, setting direction</td>
+                            <td>YOU</td>
+                            <td>"What's actually going on with this patient?"</td>
+                        </tr>
+                        <tr>
+                            <td><strong>The Middle</strong><br>Research, drafting, synthesizing options</td>
+                            <td>AI excels here</td>
+                            <td>"Generate a differential, summarize this paper"</td>
+                        </tr>
+                        <tr>
+                            <td><strong>The End</strong><br>Final judgment, decisions, responsibility</td>
+                            <td>YOU</td>
+                            <td>"Here's what I think and why."</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <p>When you let AI handle the beginning and the end, you become a passive relay station. Information flows through you, but you never actually <em>engage</em> with it. This is how you end up unable to explain your own reasoning.</p>
+            
+            <p><strong>Remember:</strong> You will stand in front of patients, families, and colleagues who trust <em>your</em> judgment. AI can help you prepare for that moment. But when it arrives, the choice — and the responsibility — will always be yours.</p>
+            
+            <p>The goal isn't to think less. It's to think <em>better</em>. AI serves that purpose. But the thinking? That's yours. Guard it.</p>
+            
+            <div class="gospel-quote">
+                <blockquote>
+                    "Innovations such as artificial intelligence have the potential to both assist you in receiving magnificent blessings and diminish and suffocate your moral agency."
+                </blockquote>
+                <cite>— <strong>Elder David A. Bednar</strong>, BYU Devotional, January 2024 (<a href="https://www.churchofjesuschrist.org/study/broadcasts/worldwide-devotional-for-young-adults/2024/11/13bednar?lang=eng" target="_blank">source</a>)</cite>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 10: Misconceptions -->
+    <section class="section-light" id="misconceptions">
+        <div class="section-inner fade-in">
+            <div class="section-number">Part 10</div>
+            <h2>Common Misconceptions</h2>
+            <p class="section-subtitle">Myths that hold students back</p>
             
             <div class="table-wrapper">
                 <table>
@@ -1523,9 +1672,68 @@
                     </tbody>
                 </table>
             </div>
+        </div>
+    </section>
+
+    <!-- Section 11: Prompt Templates -->
+    <section class="section-cream" id="prompt-templates">
+        <div class="section-inner fade-in">
+            <div class="section-number">Part 11</div>
+            <h2>Prompt Templates for Med Students</h2>
+            <p class="section-subtitle">Copy, paste, and customize these for instant results</p>
             
-            <h3>When NOT to Use AI</h3>
-            <p><em>Knowing when to step away is as important as knowing how to use it.</em></p>
+            <p>Don't start from scratch every time. Here are battle-tested prompts you can adapt:</p>
+            
+            <div class="prompt-template">
+                <div class="prompt-title">🩺 Differential Diagnosis Builder</div>
+                <div class="prompt-content">I'm a medical student working through a case. The patient is a [age]-year-old [sex] presenting with [chief complaint]. Key findings: [list relevant history, exam findings, labs]. Generate a differential diagnosis organized by most likely to least likely, with brief reasoning for each. Then suggest what additional history, exam findings, or tests would help narrow the differential.</div>
+                <button class="use-in-chat-btn" onclick="useInChat(this)">💬 Use in Chat</button>
+            </div>
+            
+            <div class="prompt-template">
+                <div class="prompt-title">📚 Study Quiz Generator</div>
+                <div class="prompt-content">I'm studying [topic] for [exam type, e.g., Step 1, shelf exam]. Generate 10 clinical vignette-style multiple choice questions that test the most high-yield concepts. After I answer, tell me which ones I got wrong and explain why the correct answer is right. Focus on the concepts that are most commonly tested.</div>
+                <button class="use-in-chat-btn" onclick="useInChat(this)">💬 Use in Chat</button>
+            </div>
+            
+            <div class="prompt-template">
+                <div class="prompt-title">📄 Paper Summarizer</div>
+                <div class="prompt-content">I'm going to paste a research paper abstract (or full text). Please summarize it in this format: (1) Research Question — what were they trying to answer? (2) Methods — brief description of study design and population (3) Key Findings — the main results in plain language (4) Clinical Implications — what does this mean for patient care? (5) Limitations — what should I be cautious about when interpreting this?
+
+[Paste paper here]</div>
+                <button class="use-in-chat-btn" onclick="useInChat(this)">💬 Use in Chat</button>
+            </div>
+            
+            <div class="prompt-template">
+                <div class="prompt-title">🎯 Clinical Vignette Creator</div>
+                <div class="prompt-content">Create a clinical vignette about [condition/topic] that would be appropriate for a [year] medical student. Include: presenting complaint, relevant history, physical exam findings, and initial lab/imaging results. After I work through it, reveal the diagnosis and explain the key teaching points. Make it realistic and challenging but fair.</div>
+                <button class="use-in-chat-btn" onclick="useInChat(this)">💬 Use in Chat</button>
+            </div>
+            
+            <div class="prompt-template">
+                <div class="prompt-title">🎓 Explain Like I'm a [Year] Student</div>
+                <div class="prompt-content">Explain [concept] to me as if I'm a [first-year/second-year/third-year/fourth-year] medical student. Start with the foundational concepts I need to understand, then build up to the clinical relevance. Use analogies where helpful. If there are common misconceptions about this topic, address them. End with 2-3 practice questions to check my understanding.</div>
+                <button class="use-in-chat-btn" onclick="useInChat(this)">💬 Use in Chat</button>
+            </div>
+            
+            <div class="prompt-template">
+                <div class="prompt-title">💊 Mechanism & Pharmacology Deep Dive</div>
+                <div class="prompt-content">Explain the mechanism of action of [drug/drug class] at a level appropriate for Step 1. Include: (1) The molecular target and what happens when it's activated/inhibited (2) The downstream physiological effects (3) Why this makes it useful for [indication] (4) The major side effects and why they occur mechanistically (5) Key drug interactions to know. Use a simple diagram description if it helps.</div>
+                <button class="use-in-chat-btn" onclick="useInChat(this)">💬 Use in Chat</button>
+            </div>
+            
+            <div class="callout">
+                <p><strong>💡 Customization tip:</strong> These templates work best when you add your specific context. The more details you provide about what you're studying and why, the more targeted the response will be.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 12: When NOT to Use AI -->
+    <section class="section-light" id="when-not-to-use-ai">
+        <div class="section-inner fade-in">
+            <div class="section-number">Part 12</div>
+            <h2>When NOT to Use AI</h2>
+            <p class="section-subtitle">Knowing when to step away is as important as knowing how to use it</p>
             
             <p>AI is powerful, but there are times when reaching for it is the wrong choice:</p>
             
@@ -1584,14 +1792,12 @@
         </div>
     </section>
 
-    <!-- Section 6: Quick Reference -->
-    <section class="section-cream" id="quick-reference">
+    <!-- Section 13: Checklist -->
+    <section class="section-cream" id="power-user-checklist">
         <div class="section-inner fade-in">
-            <div class="section-number">Part 6</div>
-            <h2>Quick Reference</h2>
-            <p class="section-subtitle">Checklists and guidelines for responsible AI use</p>
-            
-            <h3>Best Practices Checklist</h3>
+            <div class="section-number">Part 13</div>
+            <h2>The Power User Checklist</h2>
+            <p class="section-subtitle">Use this every time you interact with AI</p>
             
             <div class="checklist">
                 <div class="checklist-title">✦ Before You Prompt</div>
@@ -1620,7 +1826,15 @@
                     <li>Can I explain this in my own words now?</li>
                 </ul>
             </div>
-        <h3>Responsible Use & Citation</h3>
+        </div>
+    </section>
+
+    <!-- Responsible Use & Citation -->
+    <section class="section-light" id="responsible-use">
+        <div class="section-inner fade-in">
+            <div class="section-number">Part 14</div>
+            <h2>Responsible Use & Citation</h2>
+            <p class="section-subtitle">Use AI transparently, ethically, and in ways that strengthen your own clinical reasoning.</p>
 
             <div class="callout">
                 <p><strong>AAMC principles summary:</strong> Use AI to augment learning (not replace your judgment), protect privacy and confidentiality, evaluate outputs for bias and inaccuracy, and disclose when AI contributed to your work. <a href="https://www.aamc.org/about-us/mission-areas/medical-education/principles-ai-use" target="_blank" style="color: var(--byu-navy); font-weight: 600;">Read the AAMC Principles for AI Use in Medical Education →</a></p>
@@ -1648,16 +1862,11 @@
     <section class="closing">
         <div class="section-inner fade-in">
             <h2>The Future Is Collaborative</h2>
-            <p>The best physicians of tomorrow will be those who know how to learn, synthesize, and leverage every tool available to serve their patients. AI is an incredibly powerful tool. Use it wisely. The goal is to amplify your thinking, not outsource it.</p>
-            <p>Elder Gong has taught that these technologies are "<a href="https://newsroom.churchofjesuschrist.org/article/elder-gong-ai-gospel-context-byu-education-week" target="_blank" style="color: var(--byu-navy);">part of the Lord hastening His work in the latter days</a>." You have the opportunity to use AI to serve more patients, catch diagnoses faster, and extend care to those who need it most.</p>
-            
-            <div class="mission-statement">
-                <h3>BYU School of Medicine Mission Statement</h3>
-                <p>The Brigham Young University School of Medicine is founded on the teachings and example of Jesus Christ, the Master Healer, and guided by the doctrine and leaders of The Church of Jesus Christ of Latter-day Saints.</p>
-                <p>We provide a spiritually grounded and scientifically rigorous education for physicians who will minister to God's children throughout the world as healers, teachers, researchers, leaders, and disciples of Jesus Christ.</p>
-                <p>We approach the practice of medicine as an opportunity to prevent and alleviate human suffering and to care for all people as fellow children of a loving God.</p>
-                <p style="font-size: 0.9rem; margin-top: 1rem;"><a href="https://medicine.byu.edu/mission-statement" target="_blank" style="color: var(--byu-navy);">BYU School of Medicine Mission Statement →</a></p>
-            </div>
+            <p>The best physicians of tomorrow won't be those who memorize the most — they'll be those who know how to learn, synthesize, and leverage every tool available to serve their patients.</p>
+            <p>AI is the most powerful learning tool ever created for medicine. Use it wisely. Verify relentlessly. And remember: the goal isn't to outsource your thinking — it's to amplify it.</p>
+            <p>Elder Gong has taught that these technologies are "part of the Lord hastening His work in the latter days." You have the opportunity to use AI to serve more patients, catch diagnoses faster, and extend care to those who need it most.</p>
+            <p><strong>Go forward and heal.</strong></p>
+            <p style="font-size: 0.9rem; color: #666; margin-top: 2rem;"><em>For more on the Church's guidance regarding AI: <a href="https://www.churchofjesuschrist.org/learn/artificial-intelligence" target="_blank" style="color: var(--byu-navy);">ChurchofJesusChrist.org</a></em></p>
             <div class="closing-cta">
                 <a href="chat.html" class="btn">Try the AI Chat →</a>
             </div>

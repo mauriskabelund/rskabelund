@@ -101,15 +101,20 @@
             min-height: var(--min-touch-target);
         }
         
-        .logo {
-            height: 40px;
-            width: auto;
+        .logo-text {
+            color: var(--byu-white);
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            padding-right: 1rem;
+            border-right: 2px solid rgba(255, 255, 255, 0.4);
+            margin-right: 1rem;
         }
         
         .header-text {
             color: var(--byu-white);
             font-family: 'Libre Franklin', 'Source Sans Pro', -apple-system, sans-serif;
-            font-size: 1.25rem;
+            font-size: 1.1rem;
             font-weight: 400;
             letter-spacing: 0.02em;
         }
@@ -377,8 +382,10 @@
                 gap: 0.75rem;
             }
             
-            .logo {
-                height: 32px;
+            .logo-text {
+                font-size: 1.25rem;
+                padding-right: 0.75rem;
+                margin-right: 0.75rem;
             }
             
             .header-text {
@@ -405,7 +412,7 @@
 <body>
     <header>
         <a href="index.html" class="header-brand">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Brigham_Young_University_medallion.svg/1200px-Brigham_Young_University_medallion.svg.png" alt="BYU Logo" class="logo">
+            <span class="logo-text">BYU</span>
             <span class="header-text">School of Medicine</span>
         </a>
         <button class="menu-toggle" aria-label="Menu" onclick="toggleMenu()">
@@ -420,6 +427,7 @@
     <nav class="nav-menu">
         <ul>
             <li><a href="index.html"><span class="nav-icon">🏠</span> Home</a></li>
+            <li><a href="lesson.html"><span class="nav-icon">📖</span> This Week's Lesson</a></li>
             <li><a href="tutor.html">🧬 AI Tutor</a></li>
             <li><a href="chat.html"><span class="nav-icon">💬</span> AI Chat</a></li>
             <li><a href="ai-guide.html"><span class="nav-icon">📖</span> AI Guide</a></li>
@@ -516,6 +524,5 @@
         data-target-id="did-agent"
         onerror="showAlexError('Unable to load AI Tutor right now.')">
     </script>
-    <script src="auth.js"></script>
 </body>
 </html>

@@ -1,0 +1,2406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <title>Nutrient Absorption in the Small Intestine | MED 604</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --byu-navy: #002E5D;
+            --byu-navy-light: #003d7a;
+            --byu-white: #FFFFFF;
+            --gold: #C4A55A;
+            --bg-cream: #FAFAF8;
+            --bg-warm: #F5F4F2;
+            --text-primary: #1a1a2e;
+            --text-secondary: #6b6b7b;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --min-touch-target: 44px;
+            --focus-ring: #C4A55A;
+            --focus-shadow: 0 0 0 3px rgba(196, 165, 90, 0.32);
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Libre Franklin', -apple-system, BlinkMacSystemFont, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: var(--bg-cream);
+            color: var(--text-primary);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a:focus-visible,
+        button:focus-visible {
+            outline: 3px solid var(--focus-ring);
+            outline-offset: 2px;
+            box-shadow: var(--focus-shadow);
+        }
+        
+        /* Header */
+        header {
+            background: var(--byu-navy);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(0, 46, 93, 0.15);
+        }
+        
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            min-height: var(--min-touch-target);
+            text-decoration: none;
+        }
+        
+        .logo-text {
+            color: var(--byu-white);
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            padding-right: 1rem;
+            border-right: 2px solid rgba(255, 255, 255, 0.4);
+            margin-right: 1rem;
+        }
+        
+        .header-text {
+            color: var(--byu-white);
+            font-size: 1.1rem;
+            font-weight: 400;
+            letter-spacing: 0.01em;
+        }
+        
+        .menu-toggle {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            width: var(--min-touch-target);
+            height: var(--min-touch-target);
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+        
+        .menu-toggle span {
+            display: block;
+            height: 2px;
+            background: var(--byu-white);
+            border-radius: 2px;
+            transition: 0.3s ease;
+        }
+        
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+        
+        /* Nav Menu */
+        .nav-menu {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100vh;
+            background: white;
+            box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
+            transition: right 0.3s ease;
+            z-index: 200;
+            padding-top: 80px;
+        }
+        
+        .nav-menu.active {
+            right: 0;
+        }
+        
+        .nav-menu ul {
+            list-style: none;
+            padding: 1rem;
+        }
+        
+        .nav-menu li a {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            border-radius: var(--radius-md);
+            transition: background 0.2s ease;
+            min-height: var(--min-touch-target);
+        }
+        
+        .nav-menu li a:hover,
+        .nav-menu li a.active {
+            background: var(--bg-warm);
+        }
+        
+        .nav-icon {
+            font-size: 1.25rem;
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s ease;
+            z-index: 150;
+        }
+        
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Main Content */
+        main {
+            flex: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+            width: 100%;
+        }
+        
+        .lesson-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .lesson-week {
+            display: inline-block;
+            background: var(--byu-navy);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        h1 {
+            font-family: 'Merriweather', Georgia, serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--byu-navy);
+            margin-bottom: 0.5rem;
+        }
+        
+        .lesson-date {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+        
+        .lesson-section {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .lesson-section h2 {
+            font-size: 1.5rem;
+            color: var(--byu-navy);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--gold);
+        }
+        
+        .lesson-section p {
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+        
+        .lesson-section ul,
+        .lesson-section ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .lesson-section li {
+            line-height: 1.8;
+            margin-bottom: 0.5rem;
+        }
+        
+        .objectives-list {
+            list-style: none;
+            margin-left: 0;
+        }
+        
+        .objectives-list li {
+            padding-left: 2rem;
+            position: relative;
+        }
+        
+        .objectives-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--byu-navy);
+            font-weight: bold;
+        }
+        
+        .resource-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--byu-navy);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.75rem 1.25rem;
+            background: var(--bg-warm);
+            border-radius: var(--radius-md);
+            transition: all 0.2s ease;
+            margin: 0.25rem;
+        }
+        
+        .resource-link:hover {
+            background: var(--byu-navy);
+            color: white;
+        }
+        
+        .resources-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .callout {
+            background: linear-gradient(135deg, #e8eef5 0%, #f0f4f8 100%);
+            border-left: 4px solid var(--byu-navy);
+            padding: 1.5rem;
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: 1.5rem 0;
+        }
+        
+        .callout-title {
+            font-weight: 600;
+            color: var(--byu-navy);
+            margin-bottom: 0.5rem;
+        }
+        
+        footer {
+            background: var(--byu-navy);
+            color: var(--byu-white);
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+        }
+        
+        footer a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+        
+        footer a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Slide Preview */
+        .slide-preview {
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            cursor: pointer;
+            overflow: hidden;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            margin: 1.5rem auto 0;
+            aspect-ratio: 16 / 9;
+            max-width: 700px;
+            width: 100%;
+            position: relative;
+        }
+        
+        .slide-preview:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 46, 93, 0.15);
+        }
+        
+        .slide-preview:hover .preview-click-hint {
+            opacity: 1;
+        }
+        
+        .slide-preview-inner {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            padding: 1.5rem 2rem 1rem;
+        }
+        
+        .slide-preview-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            text-align: center;
+            padding-top: 15%;
+        }
+        
+        .preview-week-badge {
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            margin-bottom: 0.25rem;
+        }
+        
+        .slide-preview-content h3 {
+            color: var(--byu-navy);
+            font-family: 'Merriweather', Georgia, serif;
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .preview-scripture {
+            margin-top: auto;
+            margin-bottom: 15%;
+            text-align: left;
+            background: transparent;
+            border-left: 3px solid var(--gold);
+            padding: 0.5rem 0.75rem;
+            border-radius: 0;
+            width: 100%;
+            align-self: stretch;
+        }
+        
+        .preview-scripture p {
+            font-size: 0.55rem;
+            font-style: italic;
+            color: #333;
+            margin-bottom: 0.2rem;
+            line-height: 1.3;
+        }
+        
+        .preview-scripture-ref {
+            font-size: 0.5rem !important;
+            color: var(--text-secondary) !important;
+            margin-bottom: 0 !important;
+            margin-top: 0.25rem !important;
+            font-style: normal !important;
+            text-align: right;
+        }
+        
+        .preview-click-hint {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 46, 93, 0.9);
+            color: white;
+            padding: 0.5rem 1.25rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            pointer-events: none;
+        }
+        
+        .slide-preview-footer {
+            margin-top: 0.5rem;
+        }
+        
+        /* Slide Logo Bar */
+        .slide-logo-bar {
+            display: flex;
+            align-items: center;
+            gap: 0;
+        }
+        
+        .slide-logo-text {
+            color: var(--byu-navy);
+            font-size: 0.75rem;
+            white-space: nowrap;
+            padding-right: 0.75rem;
+        }
+        
+        .slide-blue-bar {
+            flex: 1;
+            height: 3px;
+            background: var(--byu-navy);
+        }
+        
+        /* Fullscreen Presentation */
+        .presentation-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #f5f5f5;
+            z-index: 1000;
+            flex-direction: column;
+        }
+        
+        .presentation-overlay.active {
+            display: flex;
+        }
+        
+        .presentation-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            max-width: 100%;
+            height: 100%;
+        }
+        
+        .slides-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            padding-bottom: 1rem;
+        }
+        
+        .slide {
+            display: none;
+            width: 100%;
+            max-width: 1200px;
+            aspect-ratio: 16 / 9;
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            flex-direction: column;
+            overflow: hidden;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .slide.active {
+            display: flex;
+            opacity: 1;
+        }
+        
+        .slide.fade-out {
+            opacity: 0;
+        }
+        
+        /* Progress Dots */
+        .progress-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 1rem;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 10;
+        }
+        
+        .progress-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 2px solid var(--byu-navy);
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            padding: 0;
+        }
+        
+        .progress-dot:hover {
+            background: rgba(0, 46, 93, 0.3);
+        }
+        
+        .progress-dot.active {
+            background: var(--byu-navy);
+        }
+        
+        /* Close Button - Top Right */
+        .presentation-close {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            width: 44px;
+            height: 44px;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.25rem;
+            cursor: pointer;
+            z-index: 1020;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s ease;
+        }
+        
+        .presentation-close:hover {
+            background: rgba(0, 0, 0, 0.7);
+        }
+        
+        .slide-content {
+            flex: 1;
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow: auto;
+        }
+        
+        /* Title slide - push content lower */
+        .slide-title .slide-content {
+            justify-content: flex-start;
+            text-align: center;
+            padding-top: 15%;
+        }
+        
+        .week-badge {
+            display: inline-block;
+            color: var(--text-secondary);
+            padding: 0.25rem 0;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            margin-bottom: 0.5rem;
+        }
+        
+        .slide-title .slide-content h1 {
+            color: var(--byu-navy);
+            font-family: 'Merriweather', Georgia, serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .slide-title .slide-scripture {
+            margin-top: auto;
+            margin-bottom: 2rem;
+            max-width: 85%;
+        }
+        
+        /* Content slides - top left header */
+        .slide-content-page .slide-content {
+            justify-content: flex-start;
+            text-align: left;
+            padding: 1.5rem 2.5rem;
+            overflow: hidden;
+        }
+        
+        .slide-content-page .slide-content h2 {
+            color: var(--byu-navy);
+            font-family: 'Merriweather', Georgia, serif;
+            font-size: 1.75rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+        
+        .slide-content p,
+        .slide-content li {
+            color: #000;
+            font-size: 1.25rem;
+            line-height: 1.6;
+        }
+        
+        .slide-scripture {
+            max-width: 700px;
+            margin: 2rem auto;
+            text-align: left;
+            background: rgba(250, 250, 248, 0.8);
+            border-left: 4px solid var(--gold);
+            padding: 1.5rem 2rem;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .slide-scripture p {
+            margin-bottom: 0.75rem;
+            font-size: 1rem;
+            font-style: italic;
+            color: #333;
+        }
+        
+        .scripture-ref {
+            color: var(--text-secondary) !important;
+            font-size: 0.9rem !important;
+            font-style: normal !important;
+            margin-top: 1rem;
+            text-align: right;
+        }
+        
+        .slide-list {
+            list-style: none;
+            max-width: 100%;
+            margin: 0;
+        }
+        
+        .slide-list li {
+            padding: 1rem 0;
+            padding-left: 2.5rem;
+            position: relative;
+            font-size: 1.35rem;
+            line-height: 1.5;
+        }
+        
+        .slide-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--byu-navy);
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        
+        .ai-patient-placeholder,
+        .content-placeholder,
+        .slide-image-placeholder {
+            background: var(--bg-warm);
+            border: 2px dashed #ccc;
+            border-radius: var(--radius-md);
+            padding: 3rem;
+            text-align: center;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+        
+        .slide-image {
+            max-width: 100%;
+            max-height: 70%;
+            object-fit: contain;
+        }
+        
+        .absorption-slide {
+            align-items: center;
+        }
+        
+        .absorption-slide .slide-image {
+            max-height: 75%;
+            margin-top: 1rem;
+        }
+        
+        .image-citation {
+            font-size: 0.7rem !important;
+            color: var(--text-secondary);
+            margin-top: auto;
+            text-align: right;
+            padding-right: 1rem;
+        }
+        
+        /* Case Review slide */
+        .case-review-slide {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start !important;
+            padding: 1.5rem 2rem !important;
+        }
+        
+        .case-review-slide h2 {
+            align-self: flex-start;
+            margin-bottom: 0.75rem;
+        }
+        
+        .biopsy-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+        
+        .biopsy-labels {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 700px;
+            margin-bottom: 0.5rem;
+            padding: 0 1rem;
+        }
+        
+        .biopsy-label-left, .biopsy-label-right {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--byu-navy);
+        }
+        
+        .biopsy-image {
+            max-width: 90%;
+            max-height: 60%;
+            object-fit: contain;
+            border-radius: var(--radius-md);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .biopsy-definitions {
+            font-size: 0.7rem !important;
+            color: var(--text-secondary);
+            margin-top: 0.3rem;
+            margin-bottom: 0.3rem;
+            font-style: italic;
+        }
+        
+        .case-review-question {
+            font-size: 1.5rem !important;
+            font-weight: 700;
+            color: var(--byu-navy);
+            margin-top: 0.75rem;
+            text-align: center;
+            padding: 0;
+            background: none;
+            border-left: none;
+            border-radius: 0;
+        }
+        
+        .case-review-slide .image-citation {
+            margin-top: 0.3rem;
+            text-align: center;
+            padding-right: 0;
+            font-size: 0.6rem !important;
+        }
+        
+        /* Case Review Tables */
+        .case-review-tables {
+            padding: 1rem 1.5rem !important;
+        }
+        
+        .case-review-tables h2 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .tables-container {
+            display: flex;
+            gap: 1rem;
+            flex: 1;
+            min-height: 0;
+        }
+        
+        .review-table-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            overflow: hidden;
+        }
+        
+        .review-table-title {
+            background: var(--byu-navy);
+            color: white;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-radius: 6px 6px 0 0;
+        }
+        
+        .review-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8rem;
+            background: #f9f6f0;
+            flex: 1;
+        }
+        
+        .review-table th, .review-table td {
+            padding: 0.4rem 0.6rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .review-table thead th {
+            background: var(--byu-navy);
+            font-weight: 600;
+            color: white;
+        }
+        
+        .review-table .section-header td {
+            font-weight: 700;
+            background: #f5f0e5;
+        }
+        
+        .review-table td:nth-child(2),
+        .review-table td:nth-child(3),
+        .review-table th:nth-child(2),
+        .review-table th:nth-child(3) {
+            text-align: center;
+        }
+        
+        /* Summary slide */
+        .summary-slide {
+            padding: 2rem 3rem !important;
+        }
+        
+        .summary-points {
+            list-style: disc;
+            margin-left: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .summary-points li {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+        
+        .assignments-header {
+            font-size: 1.4rem;
+            color: var(--byu-navy);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--gold);
+        }
+        
+        .assignments-list {
+            list-style: none;
+            margin-left: 0;
+        }
+        
+        .assignments-list li {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 0.75rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .assignments-list li::before {
+            content: "□";
+            position: absolute;
+            left: 0;
+            color: var(--byu-navy);
+        }
+        
+        .assignment-link {
+            color: var(--byu-navy);
+            text-decoration: underline;
+            font-weight: 600;
+        }
+        
+        .assignment-link:hover {
+            color: var(--byu-navy-light);
+        }
+        
+        /* Learning Objectives slide */
+        .objectives-slide {
+            justify-content: center !important;
+            padding: 2rem 3rem !important;
+        }
+        
+        .objectives-slide h2 {
+            margin-bottom: 2.5rem !important;
+            font-size: 2rem !important;
+        }
+        
+        .objectives-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            max-width: 800px;
+        }
+        
+        .objective-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.25rem;
+            background: var(--bg-warm);
+            padding: 1.25rem 1.5rem;
+            border-radius: var(--radius-md);
+            border-left: 4px solid var(--byu-navy);
+        }
+        
+        .objective-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 36px;
+            height: 36px;
+            background: var(--byu-navy);
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        
+        .objective-item p {
+            margin: 0;
+            font-size: 1.15rem;
+            line-height: 1.5;
+            padding-top: 0.25rem;
+        }
+        
+        /* Gaps in Knowledge slide */
+        .gaps-slide {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .gaps-two-column {
+            display: flex;
+            gap: 1.5rem;
+            flex: 1;
+            min-height: 0;
+        }
+        
+        .gaps-column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            min-width: 0;
+        }
+        
+        .gaps-column h3 {
+            color: var(--byu-navy);
+            font-size: 1.1rem;
+            margin: 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--byu-navy);
+        }
+        
+        .gaps-display {
+            flex: 1;
+            background: var(--bg-warm);
+            border: 2px solid #e0e0e0;
+            border-radius: var(--radius-md);
+            padding: 0.75rem;
+            overflow-y: auto;
+            min-height: 120px;
+        }
+        
+        .gaps-placeholder {
+            color: var(--text-secondary);
+            font-style: italic;
+            text-align: center;
+            margin: 0;
+            font-size: 0.9rem;
+        }
+        
+        .gaps-question, .gaps-answer {
+            background: white;
+            border-left: 4px solid var(--byu-navy);
+            padding: 0.5rem 0.75rem;
+            margin-bottom: 0.5rem;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            font-size: 0.9rem;
+        }
+        
+        .gaps-answer {
+            border-left-color: var(--gold);
+        }
+        
+        .gap-number {
+            display: inline-block;
+            background: var(--byu-navy);
+            color: white;
+            font-weight: 600;
+            font-size: 0.75rem;
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+            border-radius: 50%;
+            margin-right: 0.5rem;
+        }
+        
+        .gaps-answer .gap-number {
+            background: var(--gold);
+            color: var(--text-primary);
+        }
+        
+        .gaps-input-area {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .gaps-input-area input {
+            flex: 1;
+            padding: 0.6rem 0.75rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+        
+        .gaps-input-area input:focus {
+            outline: none;
+            border-color: var(--byu-navy);
+        }
+        
+        .answer-num-input {
+            flex: 0 0 50px !important;
+            text-align: center;
+        }
+        
+        .gaps-submit {
+            background: var(--byu-navy);
+            color: white;
+            border: none;
+            padding: 0.6rem 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+        
+        .gaps-submit:hover {
+            background: var(--byu-navy-light);
+        }
+        
+        .gaps-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .gaps-clear {
+            background: transparent;
+            color: var(--text-secondary);
+            border: 1px solid #ccc;
+            padding: 0.4rem 0.75rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .gaps-clear:hover {
+            background: #f5f5f5;
+            border-color: #999;
+        }
+        
+        .review-case-btn {
+            background: var(--gold);
+            color: var(--text-primary);
+            border: none;
+            padding: 0.6rem 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+        
+        .review-case-btn:hover {
+            background: #d4b56a;
+        }
+        
+        .open-evidence-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--byu-navy);
+            color: white;
+            text-decoration: none;
+            padding: 0.6rem 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: background 0.2s ease;
+        }
+        
+        .open-evidence-link:hover {
+            background: var(--byu-navy-light);
+        }
+        
+        /* Case Popup */
+        .gaps-slide {
+            position: relative;
+        }
+        
+        .case-popup {
+            display: none;
+            position: absolute;
+            top: 3.5rem;
+            right: 0;
+            width: 48%;
+            bottom: 3.5rem;
+            background: white;
+            border-radius: var(--radius-md);
+            box-shadow: -4px 0 24px rgba(0, 0, 0, 0.15);
+            z-index: 100;
+            overflow: hidden;
+        }
+        
+        .case-popup.active {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .case-popup-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            background: var(--byu-navy);
+            color: white;
+            font-weight: 600;
+        }
+        
+        .case-popup-minimize {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            line-height: 1;
+            cursor: pointer;
+            padding: 0 0.5rem;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+        
+        .case-popup-minimize:hover {
+            opacity: 1;
+        }
+        
+        .case-popup-content {
+            padding: 1rem;
+            overflow-y: auto;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+        
+        .case-popup-content p {
+            margin-bottom: 0.75rem;
+        }
+        
+        .case-popup-content ol {
+            margin: 0.5rem 0 0 1.25rem;
+            padding: 0;
+        }
+        
+        .case-popup-content li {
+            margin-bottom: 0.25rem;
+        }
+        
+        /* Case styling */
+        .case-slide-content {
+            padding: 1.5rem 2rem !important;
+        }
+        
+        .case-layout {
+            display: flex;
+            gap: 1.5rem;
+            flex: 1;
+            min-height: 0;
+        }
+        
+        .case-patient-image {
+            width: 220px;
+            height: auto;
+            object-fit: cover;
+            border-radius: var(--radius-md);
+            flex-shrink: 0;
+        }
+        
+        .case-right-column {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            flex-shrink: 0;
+        }
+        
+        .case-text {
+            font-size: 0.85rem;
+            line-height: 1.5;
+            flex: 1;
+        }
+        
+        .case-text p {
+            margin-bottom: 0.5rem;
+        }
+        
+        .case-question {
+            margin-top: 0.75rem;
+            color: var(--byu-navy);
+        }
+        
+        .case-options {
+            margin-top: 0.5rem;
+            margin-bottom: 0;
+            padding-left: 1.5rem;
+        }
+        
+        .case-options li {
+            margin-bottom: 0.25rem;
+        }
+        
+        .case-prompt {
+            margin-top: 0.75rem;
+            font-size: 1rem;
+            color: var(--byu-navy);
+        }
+        
+        .reveal-answer-btn {
+            background: var(--gold);
+            color: var(--text-primary);
+            border: none;
+            padding: 0.6rem 1.25rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: all 0.2s ease;
+        }
+        
+        .reveal-answer-btn:hover {
+            background: #d4b56a;
+            transform: translateY(-1px);
+        }
+        
+        .reveal-answer-btn.revealed {
+            background: #28a745;
+            color: white;
+            cursor: default;
+        }
+        
+        #correctAnswer.highlighted {
+            background: linear-gradient(90deg, #d4edda, #c3e6cb);
+            padding: 0.4rem 0.6rem;
+            margin: -0.4rem -0.6rem;
+            border-radius: 6px;
+            font-weight: 700;
+            color: #155724;
+            animation: revealPulse 0.5s ease;
+        }
+        
+        @keyframes revealPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .slide-footer {
+            padding: 1rem 2rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .slide-footer .slide-logo-text {
+            font-size: 0.9rem;
+        }
+        
+        .slide-footer .slide-blue-bar {
+            height: 4px;
+        }
+        
+        /* Presentation Navigation */
+        .presentation-nav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            padding: 1rem 2rem;
+            background: white;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .nav-btn {
+            background: var(--byu-navy);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: background 0.2s ease;
+            min-width: var(--min-touch-target);
+            min-height: var(--min-touch-target);
+        }
+        
+        .nav-btn:hover {
+            background: var(--byu-navy-light);
+        }
+        
+        .nav-menu-btn {
+            width: 140px;
+        }
+        
+        .slide-counter {
+            font-weight: 500;
+        }
+        
+        .nav-chat {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex: 1;
+            max-width: 400px;
+            margin: 0 1rem;
+        }
+        
+        .nav-chat input {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.2s ease;
+        }
+        
+        .nav-chat input:focus {
+            outline: none;
+            border-color: var(--byu-navy);
+        }
+        
+        .chat-send {
+            padding: 0.75rem 1rem;
+        }
+        
+        /* Slide Menu - positioned by JS relative to button */
+        .slide-menu {
+            display: none;
+            position: fixed;
+            bottom: 80px;
+            min-width: 160px;
+            white-space: nowrap;
+            background: white;
+            border-radius: var(--radius-md);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            padding: 0.5rem;
+            z-index: 1010;
+        }
+        
+        .slide-menu.active {
+            display: block;
+        }
+        
+        .slide-menu-inner {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+        
+        .slide-menu-item {
+            background: none;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            text-align: left;
+            cursor: pointer;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            transition: background 0.2s ease;
+        }
+        
+        .slide-menu-item:hover {
+            background: var(--bg-warm);
+        }
+        
+        .slide-menu-item.active {
+            background: var(--byu-navy);
+            color: white;
+        }
+        
+        /* Chat Response */
+        .chat-response {
+            position: fixed;
+            bottom: 80px;
+            right: 2rem;
+            width: 350px;
+            max-height: 300px;
+            background: white;
+            border-radius: var(--radius-md);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            z-index: 1010;
+            opacity: 0;
+            transform: translateY(20px);
+            pointer-events: none;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        
+        .chat-response.active {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+        
+        .chat-response-inner {
+            padding: 1rem;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .chat-close {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: none;
+            border: none;
+            font-size: 1.25rem;
+            cursor: pointer;
+            color: #666;
+        }
+        
+        #chatResponseContent {
+            padding-top: 1rem;
+            line-height: 1.7;
+        }
+        
+        #chatResponseContent p {
+            margin-bottom: 0.75rem;
+        }
+        
+        #chatResponseContent p:last-child {
+            margin-bottom: 0;
+        }
+        
+        #chatResponseContent strong {
+            color: var(--byu-navy);
+        }
+        
+        /* Mobile */
+        @media (max-width: 600px) {
+            header {
+                padding: 0.875rem 1.25rem;
+            }
+            
+            .logo-text {
+                font-size: 1.25rem;
+                padding-right: 0.75rem;
+                margin-right: 0.75rem;
+            }
+            
+            .header-text {
+                font-size: 0.9rem;
+            }
+            
+            main {
+                padding: 1rem;
+            }
+            
+            h1 {
+                font-size: 1.85rem;
+            }
+            
+            .lesson-section {
+                padding: 1.25rem;
+            }
+            
+            /* Mobile Presentation */
+            .slides-wrapper {
+                padding: 0.75rem;
+                padding-bottom: 0.5rem;
+                align-items: stretch;
+            }
+            
+            .slide {
+                border-radius: 12px;
+                aspect-ratio: auto;
+                max-height: calc(100vh - 180px);
+                width: 100%;
+                max-width: 100%;
+            }
+            
+            .slide-content {
+                padding: 1.5rem;
+                overflow-y: auto;
+                flex: 1;
+            }
+            
+            .slide-title .slide-content h1 {
+                font-size: 1.35rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .slide-scripture {
+                margin: 1rem auto;
+            }
+            
+            .slide-scripture p {
+                font-size: 0.95rem;
+            }
+            
+            .scripture-ref {
+                font-size: 0.85rem !important;
+            }
+            
+            .slide-content-page .slide-content h2 {
+                font-size: 1.2rem;
+            }
+            
+            .slide-content p,
+            .slide-content li {
+                font-size: 1rem;
+            }
+            
+            .slide-footer {
+                padding: 0.75rem 1rem;
+                flex-shrink: 0;
+            }
+            
+            .slide-footer .slide-logo-text {
+                font-size: 0.7rem;
+            }
+            
+            .presentation-nav {
+                flex-wrap: wrap;
+                gap: 0.5rem;
+                padding: 0.75rem 1rem;
+            }
+            
+            .nav-controls {
+                order: 1;
+            }
+            
+            .nav-btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+                min-width: 40px;
+                min-height: 40px;
+            }
+            
+            .nav-menu-btn {
+                min-width: 70px;
+            }
+            
+            .nav-chat {
+                order: 3;
+                width: 100%;
+                max-width: 100%;
+                margin: 0;
+            }
+            
+            .nav-chat input {
+                font-size: 0.9rem;
+                padding: 0.6rem 0.75rem;
+            }
+            
+            .close-btn {
+                order: 2;
+                margin-left: 0;
+            }
+            
+            .slide-menu {
+                bottom: 120px;
+                max-width: 90vw;
+            }
+            
+            .chat-response {
+                right: 1rem;
+                left: 1rem;
+                width: auto;
+                bottom: 120px;
+            }
+            
+            .progress-dots {
+                padding: 0.75rem;
+                gap: 0.4rem;
+            }
+            
+            .progress-dot {
+                width: 10px;
+                height: 10px;
+            }
+            
+            .presentation-close {
+                top: 0.5rem;
+                right: 0.5rem;
+                width: 36px;
+                height: 36px;
+                font-size: 1rem;
+            }
+            
+            .week-badge {
+                font-size: 0.75rem;
+                padding: 0.3rem 0.75rem;
+            }
+            
+            .slide-scripture {
+                padding: 1rem 1.25rem;
+                margin: 1rem auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay" onclick="toggleMenu()"></div>
+    
+    <header>
+        <div class="header-inner">
+            <a href="index.html" class="header-brand">
+                <span class="logo-text">BYU</span>
+                <span class="header-text">School of Medicine</span>
+            </a>
+            <button class="menu-toggle" onclick="toggleMenu()" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+    
+    <nav class="nav-menu">
+        <ul>
+            <li><a href="index.html"><span class="nav-icon">🏠</span> Home</a></li>
+            <li><a href="lesson.html" class="active"><span class="nav-icon">📖</span> This Week's Lesson</a></li>
+            <li><a href="tutor.html"><span class="nav-icon">🧬</span> AI Tutor</a></li>
+            <li><a href="chat.html"><span class="nav-icon">💬</span> AI Chat</a></li>
+            <li><a href="ai-guide.html"><span class="nav-icon">📚</span> AI Guide</a></li>
+            <li><a href="syllabus.html"><span class="nav-icon">📋</span> Course Syllabus</a></li>
+        </ul>
+    </nav>
+    
+    <main>
+        <div class="lesson-header">
+            <span class="lesson-week">MED 604</span>
+            <h1>Nutrient Absorption in the Small Intestine</h1>
+            <p class="lesson-date">Medical Metabolism in the Gastrointestinal System</p>
+        </div>
+        
+        <section id="prework" class="lesson-section">
+            <h2>Pre-work</h2>
+            <!-- Rachel will add pre-work content -->
+        </section>
+        
+        <section id="lesson" class="lesson-section">
+            <h2>Lesson</h2>
+            <p>Click the slide below to start the presentation:</p>
+            
+            <div class="slide-preview" onclick="openPresentation()">
+                <div class="slide-preview-inner">
+                    <div class="slide-preview-content">
+                        <span class="preview-week-badge">Week 7</span>
+                        <h3>Nutrient Absorption in the Small Intestine</h3>
+                        <div class="preview-scripture">
+                            <p>"All grain is good for the food of man; as also the fruit of the vine; that which yieldeth fruit, whether in the ground or above the ground—</p>
+                            <p>And all saints who remember to keep and do these sayings, walking in obedience to the commandments, shall receive health in their navel and marrow to their bones;"</p>
+                            <p class="preview-scripture-ref">— D&C 89:16, 18</p>
+                        </div>
+                    </div>
+                    <div class="slide-preview-footer">
+                        <div class="slide-logo-bar">
+                            <span class="slide-logo-text"><strong>BYU</strong> | School of Medicine</span>
+                            <div class="slide-blue-bar"></div>
+                        </div>
+                    </div>
+                    <div class="preview-click-hint">Click to start</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Fullscreen Presentation Mode -->
+        <div id="presentationMode" class="presentation-overlay">
+            <button class="presentation-close" onclick="closePresentation()" aria-label="Exit presentation">✕</button>
+            <div class="presentation-container">
+                <!-- Progress Dots -->
+                <div class="progress-dots" id="progressDots">
+                    <button class="progress-dot active" onclick="goToSlide(1)" aria-label="Slide 1"></button>
+                    <button class="progress-dot" onclick="goToSlide(2)" aria-label="Slide 2"></button>
+                    <button class="progress-dot" onclick="goToSlide(3)" aria-label="Slide 3"></button>
+                    <button class="progress-dot" onclick="goToSlide(4)" aria-label="Slide 4"></button>
+                    <button class="progress-dot" onclick="goToSlide(5)" aria-label="Slide 5"></button>
+                    <button class="progress-dot" onclick="goToSlide(6)" aria-label="Slide 6"></button>
+                    <button class="progress-dot" onclick="goToSlide(7)" aria-label="Slide 7"></button>
+                    <button class="progress-dot" onclick="goToSlide(8)" aria-label="Slide 8"></button>
+                    <button class="progress-dot" onclick="goToSlide(9)" aria-label="Slide 9"></button>
+                </div>
+                <div class="slides-wrapper">
+                    <!-- Slide 1: Title -->
+                    <div class="slide slide-title active" data-slide="1">
+                        <div class="slide-content">
+                            <span class="week-badge">Week 7</span>
+                            <h1>Nutrient Absorption in the Small Intestine</h1>
+                            <div class="slide-scripture">
+                                <p>"All grain is good for the food of man; as also the fruit of the vine; that which yieldeth fruit, whether in the ground or above the ground—</p>
+                                <p>And all saints who remember to keep and do these sayings, walking in obedience to the commandments, shall receive health in their navel and marrow to their bones;"</p>
+                                <p class="scripture-ref">— D&C 89:16, 18</p>
+                            </div>
+                        </div>
+                        <div class="slide-footer">
+                            <div class="slide-logo-bar">
+                                <span class="slide-logo-text"><strong>BYU</strong> | School of Medicine</span>
+                                <div class="slide-blue-bar"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 2: Objectives -->
+                    <div class="slide slide-content-page" data-slide="2">
+                        <div class="slide-content objectives-slide">
+                            <h2>Learning Objectives</h2>
+                            <div class="objectives-list">
+                                <div class="objective-item">
+                                    <span class="objective-number">1</span>
+                                    <p>Identify key nutrients absorbed and their locations in the small intestine</p>
+                                </div>
+                                <div class="objective-item">
+                                    <span class="objective-number">2</span>
+                                    <p>Connect clinical presentation of GI pathologies to plausible biochemical pathways</p>
+                                </div>
+                                <div class="objective-item">
+                                    <span class="objective-number">3</span>
+                                    <p>Utilize AI tools to deepen understanding of nutrient absorption in the small intestine</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slide-footer">
+                            <div class="slide-logo-bar">
+                                <span class="slide-logo-text"><strong>BYU</strong> | School of Medicine</span>
+                                <div class="slide-blue-bar"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 3: Nutrient Absorption Review -->
+                    <div class="slide slide-content-page" data-slide="3">
+                        <div class="slide-content absorption-slide">
+                            <h2>Review of Primary Locations for Nutrient Absorption</h2>
+                            <img src="gi-tract.jpg" alt="GI tract diagram showing nutrient absorption locations in duodenum, jejunum, and ileum" class="slide-image">
+                            <p class="image-citation">Image adapted from Pawlowski et al (2009) <em>Gastroenterology</em> 136: 1874-86</p>
+                        </div>
+                        <div class="slide-footer">
+                            <div class="slide-logo-bar">
+                                <span class="slide-logo-text"><strong>BYU</strong> | School of Medicine</span>
+                                <div class="slide-blue-bar"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 4: Case -->
+                    <div class="slide slide-content-page" data-slide="4">
+                        <div class="slide-content case-slide-content">
+                            <h2>Clinical Case</h2>
+                            <div class="case-layout">
+                                <div class="case-text">
+                                <p>A 41-year-old woman of Algerian descent, referred by her gynecologist, presented with a blood hemoglobin of 7.8 g/dL. She was on hormone therapy for endometriosis and had essentially no menstrual bleeding for the past 5 years. She followed no dietary restrictions. Her serum ferritin was unmeasurable.</p>
+                                <p>The patient's only symptom was shortness of breath with exertion, and except for pallor, her examination results were normal. Iron repletion with daily ferrous sulfate supplements increased her blood hemoglobin to 12 g/dL in 1 year. She continued taking iron supplements.</p>
+                                <p>Four years later, she fractured her wrist after a low-impact fall. A bone mineral density study (DEXA scan) revealed osteoporosis.</p>
+                                <p class="case-question"><strong>What is the most likely underlying cause of her signs and symptoms?</strong></p>
+                                <ol class="case-options" type="A">
+                                    <li>Cation transporter deficiency</li>
+                                    <li>Chronic hepatitis B infection</li>
+                                    <li>Chronic small intestine bacteria overgrowth</li>
+                                    <li>Celiac Disease</li>
+                                </ol>
+                                </div>
+                                <img src="patient.jpg" alt="Patient" class="case-patient-image">
+                            </div>
+                        </div>
+                        <div class="slide-footer">
+                            <div class="slide-logo-bar">
+                                <span class="slide-logo-text"><strong>BYU</strong> | School of Medicine</span>
+                                <div class="slide-blue-bar"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 5: Gaps in Knowledge -->
+                    <div class="slide slide-content-page" data-slide="5">
+                        <div class="slide-content gaps-slide">
+                            <h2>Gaps in Knowledge</h2>
+                            <div class="gaps-two-column">
+                                <div class="gaps-column gaps-questions-col">
+                                    <h3>Questions</h3>
+                                    <div class="gaps-display" id="gapsDisplay">
+                                        <p class="gaps-placeholder">Questions will appear here...</p>
+                                    </div>
+                                    <div class="gaps-input-area">
+                                        <input type="text" id="gapsInput" placeholder="What do you need to know?" onkeypress="handleGapsKeypress(event)">
+                                        <button class="gaps-submit" onclick="submitGap()">Add</button>
+                                    </div>
+                                </div>
+                                <div class="gaps-column gaps-answers-col">
+                                    <h3>Answers</h3>
+                                    <div class="gaps-display" id="answersDisplay">
+                                        <p class="gaps-placeholder">Answers will appear here...</p>
+                                    </div>
+                                    <div class="gaps-input-area">
+                                        <input type="number" id="answerNumber" placeholder="#" min="1" class="answer-num-input">
+                                        <input type="text" id="answerInput" placeholder="Enter answer..." onkeypress="handleAnswerKeypress(event)">
+                                        <button class="gaps-submit" onclick="submitAnswer()">Add</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="gaps-footer">
+                                <button class="gaps-clear" onclick="clearGaps()">Clear All</button>
+                                <button class="review-case-btn" onclick="toggleCasePopup()">📋 Review Case</button>
+                                <a href="https://www.openevidence.com/" target="_blank" class="open-evidence-link">
+                                    🔬 Use OpenEvidence to find answers →
+                                </a>
+                            </div>
+                            
+                            <!-- Case Popup -->
+                            <div id="casePopup" class="case-popup">
+                                <div class="case-popup-header">
+                                    <span>Clinical Case</span>
+                                    <button class="case-popup-minimize" onclick="toggleCasePopup()">−</button>
+                                </div>
+                                <div class="case-popup-content">
+                                    <p>A 41-year-old woman of Algerian descent, referred by her gynecologist, presented with a blood hemoglobin of 7.8 g/dL. She was on hormone therapy for endometriosis and had essentially no menstrual bleeding for the past 5 years. She followed no dietary restrictions. Her serum ferritin was unmeasurable.</p>
+                                    <p>The patient's only symptom was shortness of breath with exertion, and except for pallor, her examination results were normal. Iron repletion with daily ferrous sulfate supplements increased her blood hemoglobin to 12 g/dL in 1 year. She continued taking iron supplements.</p>
+                                    <p>Four years later, she fractured her wrist after a low-impact fall. A bone mineral density study (DEXA scan) revealed osteoporosis.</p>
+                                    <p class="case-question"><strong>What is the most likely underlying cause of her signs and symptoms?</strong></p>
+                                    <ol type="A">
+                                        <li>Cation transporter deficiency</li>
+                                        <li>Chronic hepatitis B infection</li>
+                                        <li>Chronic small intestine bacteria overgrowth</li>
+                                        <li>Celiac Disease</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slide-footer">
+                            <div class="slide-logo-bar">
+                                <span class="slide-logo-text"><strong>BYU</strong> | School of Medicine</span>
+                                <div class="slide-blue-bar"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 6: Case (Copy) -->
+                    <div class="slide slide-content-page" data-slide="6">
+                        <div class="slide-content case-slide-content">
+                            <h2>Clinical Case</h2>
+                            <div class="case-layout">
+                                <div class="case-text">
+                                <p>A 41-year-old woman of Algerian descent, referred by her gynecologist, presented with a blood hemoglobin of 7.8 g/dL. She was on hormone therapy for endometriosis and had essentially no menstrual bleeding for the past 5 years. She followed no dietary restrictions. Her serum ferritin was unmeasurable.</p>
+                                <p>The patient's only symptom was shortness of breath with exertion, and except for pallor, her examination results were normal. Iron repletion with daily ferrous sulfate supplements increased her blood hemoglobin to 12 g/dL in 1 year. She continued taking iron supplements.</p>
+                                <p>Four years later, she fractured her wrist after a low-impact fall. A bone mineral density study (DEXA scan) revealed osteoporosis.</p>
+                                <p class="case-question"><strong>What is the most likely underlying cause of her signs and symptoms?</strong></p>
+                                <ol class="case-options" type="A" id="slide6Options">
+                                    <li>Cation transporter deficiency</li>
+                                    <li>Chronic hepatitis B infection</li>
+                                    <li>Chronic small intestine bacteria overgrowth</li>
+                                    <li id="correctAnswer">Celiac Disease</li>
+                                </ol>
+                                </div>
+                                <div class="case-right-column">
+                                    <img src="patient.jpg" alt="Patient" class="case-patient-image">
+                                    <button class="reveal-answer-btn" onclick="revealAnswer()">Reveal Answer</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slide-footer">
+                            <div class="slide-logo-bar">
+                                <span class="slide-logo-text"><strong>BYU</strong> | School of Medicine</span>
+                                <div class="slide-blue-bar"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 7: Case Review -->
+                    <div class="slide slide-content-page" data-slide="7">
+                        <div class="slide-content case-review-slide">
+                            <h2>Case Review</h2>
+                            <div class="biopsy-container">
+                                <div class="biopsy-labels">
+                                    <span class="biopsy-label-left">Celiac duodenal biopsy specimen</span>
+                                    <span class="biopsy-label-right">Healthy biopsy specimen</span>
+                                </div>
+                                <img src="biopsy.jpg" alt="Celiac vs healthy duodenal biopsy comparison" class="biopsy-image">
+                                <p class="biopsy-definitions">IEL = intraepithelial lymphocytes &nbsp;|&nbsp; CH = crypt hyperplasia</p>
+                                <p class="case-review-question">Why did she have no obvious GI symptoms?</p>
+                                <p class="image-citation">Source: Am Fam Physician. 2002 Dec 15;66(12):2259-2266.</p>
+                            </div>
+                        </div>
+                        <div class="slide-footer">
+                            <div class="slide-logo-bar">
+                                <span class="slide-logo-text"><strong>BYU</strong> | School of Medicine</span>
+                                <div class="slide-blue-bar"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 8: Case Review 2 -->
+                    <div class="slide slide-content-page" data-slide="8">
+                        <div class="slide-content case-review-tables">
+                            <h2>Case Review</h2>
+                            <div class="tables-container">
+                                <div class="review-table-wrapper">
+                                    <div class="review-table-title">Gastrointestinal and Extraintestinal Manifestations of Celiac Disease and Nonceliac Gluten Sensitivity</div>
+                                    <table class="review-table">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th colspan="2">Presence of Symptoms</th>
+                                            </tr>
+                                            <tr>
+                                                <th>Symptoms</th>
+                                                <th>Celiac Disease</th>
+                                                <th>Nonceliac Gluten Sensitivity</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="section-header"><td colspan="3">Intestinal</td></tr>
+                                            <tr><td>Abdominal pain, %</td><td>+ (27.8)</td><td>+</td></tr>
+                                            <tr><td>Anorexia</td><td>+</td><td>−</td></tr>
+                                            <tr><td>Bloating</td><td>+</td><td>+</td></tr>
+                                            <tr><td>Constipation, %</td><td>+ (20.2)</td><td>+</td></tr>
+                                            <tr><td>Diarrhea, %</td><td>+ (35.3)</td><td>+</td></tr>
+                                            <tr><td>Flatulence</td><td>+</td><td>+</td></tr>
+                                            <tr><td>Lactose intolerance</td><td>+</td><td>−</td></tr>
+                                            <tr><td>Nausea</td><td>+</td><td>−</td></tr>
+                                            <tr><td>Gastroesophageal reflux</td><td>+</td><td>−</td></tr>
+                                            <tr><td>Weight loss</td><td>+</td><td>−</td></tr>
+                                            <tr><td>Vomiting</td><td>+</td><td>−</td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="review-table-wrapper">
+                                    <div class="review-table-title">Gastrointestinal and Extraintestinal Manifestations of Celiac Disease and Nonceliac Gluten Sensitivity</div>
+                                    <table class="review-table">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th colspan="2">Presence of Symptoms</th>
+                                            </tr>
+                                            <tr>
+                                                <th>Symptoms</th>
+                                                <th>Celiac Disease</th>
+                                                <th>Nonceliac Gluten Sensitivity</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="section-header"><td colspan="3">Extraintestinal</td></tr>
+                                            <tr><td>Anemia, %</td><td>+ (32)</td><td>+</td></tr>
+                                            <tr><td>Anxiety</td><td>+</td><td>+</td></tr>
+                                            <tr><td>Arthralgia, %</td><td>+ (29.3)</td><td>+</td></tr>
+                                            <tr><td>Arthritis, %</td><td>+ (1.5)</td><td>+</td></tr>
+                                            <tr><td>Ataxia</td><td>+</td><td>+</td></tr>
+                                            <tr><td>Dental enamel hypoplasia</td><td>+</td><td>−</td></tr>
+                                            <tr><td>Delayed puberty</td><td>+</td><td>−</td></tr>
+                                            <tr><td>Dermatitis herpetiformis</td><td>+</td><td>−</td></tr>
+                                            <tr><td>Depression</td><td>+</td><td>+</td></tr>
+                                            <tr><td>Elevated liver enzymes</td><td>+</td><td>−</td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <p class="image-citation" style="margin-top: 0.5rem; text-align: center;">Prevalence in celiac disease at presentation indicated in parentheses where available.<br>Source: JAMA. 2017;318(7):647-656.</p>
+                        </div>
+                        <div class="slide-footer">
+                            <div class="slide-logo-bar">
+                                <span class="slide-logo-text"><strong>BYU</strong> | School of Medicine</span>
+                                <div class="slide-blue-bar"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 9: Summary -->
+                    <div class="slide slide-content-page" data-slide="9">
+                        <div class="slide-content summary-slide">
+                            <h2>Summary</h2>
+                            <ul class="summary-points">
+                                <li>Adequate nutrient absorption requires proper food sources, digestion methods (enzymes, pH, etc.) and anatomical structure</li>
+                            </ul>
+                            <h3 class="assignments-header">Assignments</h3>
+                            <ul class="assignments-list">
+                                <li><a href="#" class="assignment-link">Practice with a patient</a> (AI Patient)</li>
+                                <li>Generate flashcards on today's lesson topics</li>
+                                <li>Practice USMLE Step 1 Questions</li>
+                            </ul>
+                        </div>
+                        <div class="slide-footer">
+                            <div class="slide-logo-bar">
+                                <span class="slide-logo-text"><strong>BYU</strong> | School of Medicine</span>
+                                <div class="slide-blue-bar"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                <!-- Navigation Bar -->
+                <div class="presentation-nav">
+                    <div class="nav-controls">
+                        <button class="nav-btn" onclick="prevSlide()" aria-label="Previous slide">←</button>
+                        <button class="nav-btn nav-menu-btn" onclick="toggleSlideMenu()" aria-label="Slide menu">
+                            <span class="slide-counter"><span id="currentSlide">1</span> / <span id="totalSlides">5</span></span>
+                        </button>
+                        <button class="nav-btn" onclick="nextSlide()" aria-label="Next slide">→</button>
+                    </div>
+                    <div class="nav-chat">
+                        <input type="text" id="slideChat" placeholder="Ask AI a question..." onkeypress="handleChatKeypress(event)">
+                        <button class="nav-btn chat-send" onclick="sendSlideChat()" aria-label="Send">💬</button>
+                    </div>
+                </div>
+                
+                <!-- Slide Menu -->
+                <div id="slideMenu" class="slide-menu">
+                    <div class="slide-menu-inner">
+                        <button class="slide-menu-item active" onclick="goToSlide(1)">1. Intro</button>
+                        <button class="slide-menu-item" onclick="goToSlide(2)">2. Objectives</button>
+                        <button class="slide-menu-item" onclick="goToSlide(3)">3. Absorption</button>
+                        <button class="slide-menu-item" onclick="goToSlide(4)">4. Case</button>
+                        <button class="slide-menu-item" onclick="goToSlide(5)">5. Gaps</button>
+                        <button class="slide-menu-item" onclick="goToSlide(6)">6. Case</button>
+                        <button class="slide-menu-item" onclick="goToSlide(7)">7. Case Review</button>
+                        <button class="slide-menu-item" onclick="goToSlide(8)">8. Case Review</button>
+                        <button class="slide-menu-item" onclick="goToSlide(9)">9. Summary</button>
+                    </div>
+                </div>
+                
+                <!-- Chat Response Area -->
+                <div id="chatResponse" class="chat-response">
+                    <div class="chat-response-inner">
+                        <button class="chat-close" onclick="closeChatResponse()">✕</button>
+                        <div id="chatResponseContent"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <section id="assignments" class="lesson-section">
+            <h2>Assignments</h2>
+            <!-- Rachel will add assignments -->
+        </section>
+    </main>
+    
+    <footer>
+        &copy; 2026 Rachel Skabelund · <a href="https://byu.edu">BYU School of Medicine</a> · <a href="ai-guide.html#responsible-use">How to Use AI Responsibly</a>
+    </footer>
+    
+    <script>
+        // Menu toggle
+        function toggleMenu() {
+            document.querySelector('.menu-toggle').classList.toggle('active');
+            document.querySelector('.nav-menu').classList.toggle('active');
+            document.querySelector('.overlay').classList.toggle('active');
+            document.body.style.overflow = document.body.style.overflow === 'hidden' ? '' : 'hidden';
+        }
+        
+        // Presentation variables
+        let currentSlide = 1;
+        const totalSlides = 9;
+        
+        // Open presentation
+        function openPresentation() {
+            document.getElementById('presentationMode').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            updateSlideCounter();
+        }
+        
+        // Close presentation
+        function closePresentation() {
+            document.getElementById('presentationMode').classList.remove('active');
+            document.getElementById('slideMenu').classList.remove('active');
+            document.getElementById('chatResponse').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        // Navigate slides
+        function nextSlide() {
+            if (currentSlide < totalSlides) {
+                goToSlide(currentSlide + 1);
+            }
+        }
+        
+        function prevSlide() {
+            if (currentSlide > 1) {
+                goToSlide(currentSlide - 1);
+            }
+        }
+        
+        function goToSlide(num) {
+            // Fade out current slide
+            const currentSlideEl = document.querySelector('.slide.active');
+            if (currentSlideEl) {
+                currentSlideEl.classList.add('fade-out');
+            }
+            
+            // Short delay for transition
+            setTimeout(() => {
+                // Hide all slides
+                document.querySelectorAll('.slide').forEach(s => {
+                    s.classList.remove('active', 'fade-out');
+                });
+                document.querySelectorAll('.slide-menu-item').forEach(s => s.classList.remove('active'));
+                document.querySelectorAll('.progress-dot').forEach(d => d.classList.remove('active'));
+                
+                // Show target slide
+                document.querySelector(`.slide[data-slide="${num}"]`).classList.add('active');
+                if (document.querySelectorAll('.slide-menu-item')[num - 1]) {
+                    document.querySelectorAll('.slide-menu-item')[num - 1].classList.add('active');
+                }
+                document.querySelectorAll('.progress-dot')[num - 1].classList.add('active');
+                
+                currentSlide = num;
+                updateSlideCounter();
+                
+                // Close menu after selection
+                document.getElementById('slideMenu').classList.remove('active');
+            }, 150);
+        }
+        
+        function updateSlideCounter() {
+            document.getElementById('currentSlide').textContent = currentSlide;
+            document.getElementById('totalSlides').textContent = totalSlides;
+        }
+        
+        // Slide menu toggle
+        function toggleSlideMenu() {
+            const menu = document.getElementById('slideMenu');
+            const btn = document.querySelector('.nav-menu-btn');
+            
+            // Position menu centered above button
+            const btnRect = btn.getBoundingClientRect();
+            const menuWidth = menu.offsetWidth || 160;
+            menu.style.left = (btnRect.left + btnRect.width / 2 - menuWidth / 2) + 'px';
+            
+            menu.classList.toggle('active');
+            document.getElementById('chatResponse').classList.remove('active');
+        }
+        
+        // Chat functionality
+        function handleChatKeypress(e) {
+            if (e.key === 'Enter') {
+                sendSlideChat();
+            }
+        }
+        
+        async function sendSlideChat() {
+            const input = document.getElementById('slideChat');
+            const question = input.value.trim();
+            if (!question) return;
+            
+            const responseDiv = document.getElementById('chatResponse');
+            const contentDiv = document.getElementById('chatResponseContent');
+            
+            contentDiv.innerHTML = '<p><em>Thinking...</em></p>';
+            responseDiv.classList.add('active');
+            
+            try {
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        messages: [{ role: 'user', content: question }]
+                    })
+                });
+                
+                const data = await response.json();
+                const formattedAnswer = (data.content || 'No response').replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br>');
+                contentDiv.innerHTML = `<p><strong>Q:</strong> ${question}</p><p><strong>A:</strong> ${formattedAnswer}</p>`;
+            } catch (err) {
+                contentDiv.innerHTML = `<p><strong>Q:</strong> ${question}</p><p><em>Error connecting to AI. Please try again.</em></p>`;
+            }
+            
+            input.value = '';
+        }
+        
+        function closeChatResponse() {
+            document.getElementById('chatResponse').classList.remove('active');
+        }
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            const presentation = document.getElementById('presentationMode');
+            const chatInput = document.getElementById('slideChat');
+            const gapsInput = document.getElementById('gapsInput');
+            const answerInput = document.getElementById('answerInput');
+            const answerNumber = document.getElementById('answerNumber');
+            const isTypingInInput = document.activeElement === chatInput || 
+                                    document.activeElement === gapsInput || 
+                                    document.activeElement === answerInput ||
+                                    document.activeElement === answerNumber;
+            
+            if (presentation.classList.contains('active')) {
+                if (e.key === 'Escape') {
+                    closePresentation();
+                } else if (!isTypingInInput && (e.key === 'ArrowRight' || e.key === ' ')) {
+                    e.preventDefault();
+                    nextSlide();
+                } else if (!isTypingInInput && e.key === 'ArrowLeft') {
+                    prevSlide();
+                }
+            } else {
+                if (e.key === 'Escape') {
+                    document.querySelector('.menu-toggle').classList.remove('active');
+                    document.querySelector('.nav-menu').classList.remove('active');
+                    document.querySelector('.overlay').classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            }
+        });
+        
+        // Touch/Swipe support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+        
+        document.addEventListener('touchend', (e) => {
+            const presentation = document.getElementById('presentationMode');
+            if (!presentation.classList.contains('active')) return;
+            
+            // Don't swipe if touching chat input
+            if (e.target.closest('.nav-chat')) return;
+            
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, { passive: true });
+        
+        function handleSwipe() {
+            const swipeDistance = touchEndX - touchStartX;
+            const minSwipe = 50;
+            
+            if (swipeDistance < -minSwipe) {
+                // Swipe left - next slide
+                nextSlide();
+            } else if (swipeDistance > minSwipe) {
+                // Swipe right - prev slide
+                prevSlide();
+            }
+        }
+        
+        // Gaps in Knowledge functionality
+        let gapsQuestions = [];
+        let gapsAnswers = {};
+        
+        function handleGapsKeypress(e) {
+            if (e.key === 'Enter') {
+                submitGap();
+            }
+        }
+        
+        function handleAnswerKeypress(e) {
+            if (e.key === 'Enter') {
+                submitAnswer();
+            }
+        }
+        
+        function submitGap() {
+            const input = document.getElementById('gapsInput');
+            const question = input.value.trim();
+            if (!question) return;
+            
+            gapsQuestions.push(question);
+            renderGaps();
+            input.value = '';
+            input.focus();
+        }
+        
+        function submitAnswer() {
+            const numInput = document.getElementById('answerNumber');
+            const answerInput = document.getElementById('answerInput');
+            const num = parseInt(numInput.value);
+            const answer = answerInput.value.trim();
+            
+            if (!num || num < 1 || num > gapsQuestions.length) {
+                numInput.focus();
+                return;
+            }
+            if (!answer) {
+                answerInput.focus();
+                return;
+            }
+            
+            if (!gapsAnswers[num]) {
+                gapsAnswers[num] = [];
+            }
+            gapsAnswers[num].push(answer);
+            renderAnswers();
+            answerInput.value = '';
+            numInput.value = '';
+            numInput.focus();
+        }
+        
+        function clearGaps() {
+            gapsQuestions = [];
+            gapsAnswers = {};
+            renderGaps();
+            renderAnswers();
+        }
+        
+        function renderGaps() {
+            const display = document.getElementById('gapsDisplay');
+            
+            if (gapsQuestions.length === 0) {
+                display.innerHTML = '<p class="gaps-placeholder">Questions will appear here...</p>';
+            } else {
+                display.innerHTML = gapsQuestions.map((q, i) => 
+                    `<div class="gaps-question"><span class="gap-number">${i + 1}</span>${escapeHtml(q)}</div>`
+                ).join('');
+            }
+        }
+        
+        function renderAnswers() {
+            const display = document.getElementById('answersDisplay');
+            const answerEntries = Object.entries(gapsAnswers);
+            
+            if (answerEntries.length === 0) {
+                display.innerHTML = '<p class="gaps-placeholder">Answers will appear here...</p>';
+            } else {
+                let html = '';
+                answerEntries.sort((a, b) => parseInt(a[0]) - parseInt(b[0]));
+                answerEntries.forEach(([num, answers]) => {
+                    answers.forEach(answer => {
+                        html += `<div class="gaps-answer"><span class="gap-number">${num}</span>${escapeHtml(answer)}</div>`;
+                    });
+                });
+                display.innerHTML = html;
+            }
+        }
+        
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        
+        function toggleCasePopup() {
+            const popup = document.getElementById('casePopup');
+            popup.classList.toggle('active');
+        }
+        
+        function revealAnswer() {
+            const answer = document.getElementById('correctAnswer');
+            const btn = document.querySelector('.reveal-answer-btn');
+            
+            if (!answer.classList.contains('highlighted')) {
+                answer.classList.add('highlighted');
+                btn.textContent = 'Answer: D. Celiac Disease';
+                btn.classList.add('revealed');
+            }
+        }
+    </script>
+</body>
+</html>

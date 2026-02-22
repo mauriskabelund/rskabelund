@@ -6,7 +6,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;600&display=swap" rel="stylesheet">
-    <title>AI Nutrient Metabolism Tutor | Rachel Skabelund</title>
+    <title>Practice with a Patient | Rachel Skabelund</title>
     <style>
         * {
             margin: 0;
@@ -223,10 +223,123 @@
             position: relative;
         }
         
-        #did-agent {
+        .two-column-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            padding: 1rem;
+            height: calc(100vh - 180px);
+        }
+        
+        .panel {
+            background: white;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .panel h2 {
+            background: var(--byu-navy);
+            color: white;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            margin: 0;
+        }
+        
+        .panel-description {
+            padding: 0.75rem 1rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            background: var(--bg-light);
+            border-bottom: 1px solid var(--border-light);
+            margin: 0;
+        }
+        
+        .patient-panel #did-agent {
             flex: 1;
             width: 100%;
-            min-height: calc(100vh - 72px);
+            min-height: 400px;
+        }
+        
+        .question-panel .chat-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .question-panel .messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+            background: var(--bg-cream);
+        }
+        
+        .question-panel .chat-input-form {
+            display: flex;
+            gap: 0.5rem;
+            padding: 1rem;
+            border-top: 1px solid var(--border-light);
+            background: white;
+        }
+        
+        .question-panel input[type="text"] {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-sm);
+            font-size: 0.95rem;
+        }
+        
+        .question-panel button {
+            background: var(--byu-navy);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.25rem;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        
+        .question-panel button:hover {
+            background: var(--byu-navy-light);
+        }
+        
+        .message {
+            padding: 0.75rem 1rem;
+            border-radius: var(--radius-sm);
+            margin-bottom: 0.75rem;
+            max-width: 90%;
+            line-height: 1.5;
+        }
+        
+        .user-message {
+            background: var(--byu-navy);
+            color: white;
+            margin-left: auto;
+        }
+        
+        .ai-message {
+            background: white;
+            border: 1px solid var(--border-light);
+        }
+        
+        .ai-message.loading {
+            color: var(--text-muted);
+            font-style: italic;
+        }
+        
+        @media (max-width: 900px) {
+            .two-column-layout {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+            
+            .panel {
+                min-height: 400px;
+            }
         }
 
         .context-banner {
@@ -237,12 +350,10 @@
         }
 
         .context-banner h1 {
-            font-size: 1.1rem;
+            font-size: 1.3rem;
             font-weight: 600;
             color: var(--byu-navy);
             margin-bottom: 0.35rem;
-            display: flex;
-            align-items: center;
             justify-content: center;
             gap: 0.5rem;
         }
@@ -429,7 +540,7 @@
         <ul>
             <li><a href="index.html"><span class="nav-icon">🏠</span> Home</a></li>
             <li><a href="lesson.html"><span class="nav-icon">📖</span> This Week's Lesson</a></li>
-            <li><a href="tutor.html">🧬 AI Tutor</a></li>
+            <li><a href="tutor.html">🧬 Practice with a Patient</a></li>
             <li><a href="chat.html"><span class="nav-icon">💬</span> AI Chat</a></li>
             <li><a href="ai-guide.html"><span class="nav-icon">📖</span> AI Guide</a></li>
             <li><a href="syllabus.html"><span class="nav-icon">📋</span> Course Syllabus</a></li>
@@ -437,36 +548,33 @@
     </nav>
 
     <section class="context-banner">
-        <h1>
-            AI Nutrient Metabolism Tutor
-            <span class="badge">Mechanisms Explorer</span>
-        </h1>
-        <p>
-            Meet your always-available course assistant for exploring biochemical mechanisms.
-            Ask questions about digestion, absorption, transport, and metabolism pathways—this 
-            tutor helps you apply what you know, identify gaps, and dig into the science.
-        </p>
-        <p class="credit">TBL structure adapted from Dr. Janet Lindsley's celiac malabsorption case</p>
-        <details class="example-questions">
-            <summary>Try asking →</summary>
-            <ul>
-                <li>Explain at the cellular level how damaged villi reduce peptide absorption.</li>
-                <li>What happens biochemically if lactase is deficient?</li>
-                <li>Compare the Na-glucose cotransporter vs. facilitated diffusion for fructose.</li>
-                <li>How do brush-border enzymes differ for carb vs. protein digestion?</li>
-                <li>What's the role of PEPT1 in amino acid absorption?</li>
-            </ul>
-        </details>
+        <h1>Practice with a Patient</h1>
+        <p>Interview the AI patient on the left, then use the question generator on the right to create study questions based on the case.</p>
     </section>
     
-    <main>
-        <div id="alexStatus" class="alex-status" role="status" aria-live="polite">Loading AI Tutor...</div>
-        <div id="did-agent" aria-label="AI Nutrient Metabolism Tutor interactive chat"></div>
-        <noscript>
-            <div class="alex-status error" style="position: static; transform: none; margin: 1rem auto;">
-                JavaScript is required to load the AI Tutor. Please enable JavaScript and refresh this page.
+    <main class="two-column-layout">
+        <div class="panel patient-panel">
+            <h2>AI Patient</h2>
+            <div id="alexStatus" class="alex-status" role="status" aria-live="polite">Loading AI Patient...</div>
+            <div id="did-agent" aria-label="AI Patient interactive chat"></div>
+            <noscript>
+                <div class="alex-status error" style="position: static; transform: none; margin: 1rem auto;">
+                    JavaScript is required to load the AI Patient. Please enable JavaScript and refresh this page.
+                </div>
+            </noscript>
+        </div>
+        
+        <div class="panel question-panel">
+            <h2>Question Generator</h2>
+            <p class="panel-description">Generate study questions based on your patient interaction</p>
+            <div class="chat-container">
+                <div id="question-messages" class="messages"></div>
+                <form id="question-form" class="chat-input-form">
+                    <input type="text" id="question-input" placeholder="Describe what you learned from the patient..." autocomplete="off">
+                    <button type="submit">Generate Questions</button>
+                </form>
             </div>
-        </noscript>
+        </div>
     </main>
 
     <footer>
@@ -509,9 +617,55 @@
 
         window.setTimeout(() => {
             if (alexContainer && alexContainer.children.length === 0) {
-                showAlexError('AI Tutor failed to load.');
+                showAlexError('AI Patient failed to load.');
             }
         }, 10000);
+        
+        // Question Generator Chat
+        const questionForm = document.getElementById('question-form');
+        const questionInput = document.getElementById('question-input');
+        const questionMessages = document.getElementById('question-messages');
+        
+        function addMessage(content, isUser) {
+            const div = document.createElement('div');
+            div.className = isUser ? 'message user-message' : 'message ai-message';
+            div.innerHTML = content;
+            questionMessages.appendChild(div);
+            questionMessages.scrollTop = questionMessages.scrollHeight;
+        }
+        
+        questionForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const userInput = questionInput.value.trim();
+            if (!userInput) return;
+            
+            addMessage(userInput, true);
+            questionInput.value = '';
+            
+            // Show loading
+            const loadingDiv = document.createElement('div');
+            loadingDiv.className = 'message ai-message loading';
+            loadingDiv.textContent = 'Generating questions...';
+            questionMessages.appendChild(loadingDiv);
+            
+            try {
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        message: `Based on this patient interaction, generate 3-5 study questions that would help a medical student understand the underlying concepts:\n\n${userInput}\n\nFormat as a numbered list with clear, specific questions.`,
+                        systemPrompt: 'You are a medical education assistant. Generate thoughtful study questions based on patient cases to help students learn.'
+                    })
+                });
+                
+                const data = await response.json();
+                loadingDiv.remove();
+                addMessage(data.response || data.message || 'Unable to generate questions.', false);
+            } catch (error) {
+                loadingDiv.remove();
+                addMessage('Error generating questions. Please try again.', false);
+            }
+        });
     </script>
     
     <script 

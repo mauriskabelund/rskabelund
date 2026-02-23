@@ -548,7 +548,7 @@
 
     <section class="context-banner">
         <h1>Practice with a Patient</h1>
-        <p>Interview the AI patient on the left, then use the question generator on the right to create study questions based on the case.</p>
+        <p>Interview the AI patient on the left, then ask the AI tutor on the right to explain concepts and test your understanding.</p>
     </section>
     
     <main class="two-column-layout">
@@ -563,13 +563,13 @@
         </div>
         
         <div class="panel question-panel">
-            <h2>Question Generator</h2>
-            <p class="panel-description">Generate study questions based on your patient interaction</p>
+            <h2>AI Tutor</h2>
+            <p class="panel-description">Ask questions about the case to get clinical explanations and test your understanding</p>
             <div class="chat-container">
                 <div id="question-messages" class="messages"></div>
                 <form id="question-form" class="chat-input-form">
-                    <input type="text" id="question-input" placeholder="Describe what you learned from the patient..." autocomplete="off">
-                    <button type="submit">Generate Questions</button>
+                    <input type="text" id="question-input" placeholder="Ask a question about the patient case..." autocomplete="off">
+                    <button type="submit">Ask</button>
                 </form>
             </div>
         </div>
@@ -612,7 +612,7 @@
             // Show loading
             const loadingDiv = document.createElement('div');
             loadingDiv.className = 'message ai-message loading';
-            loadingDiv.textContent = 'Generating questions...';
+            loadingDiv.textContent = 'Thinking...';
             questionMessages.appendChild(loadingDiv);
             
             try {
@@ -621,8 +621,16 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         messages: [
-                            { role: 'system', content: 'You are a medical education assistant. Generate thoughtful study questions based on patient cases to help students learn.' },
-                            { role: 'user', content: `Based on this patient interaction, generate 3-5 study questions that would help a medical student understand the underlying concepts:\n\n${userInput}\n\nFormat as a numbered list with clear, specific questions.` }
+                            { role: 'system', content: `You are a medical education assistant helping medical students learn through patient cases. When a student asks a question, provide a response in three parts:
+
+1. **Clinical Answer**: Provide a detailed, clinical explanation that answers their question thoroughly.
+
+2. **Further Investigation**: Suggest 2-3 follow-up questions or topics they could explore to deepen their understanding.
+
+3. **Self-Assessment**: Create a multiple choice question (with 4 options A-D) related to the topic. Put the correct answer at the end.
+
+Use clear formatting with headers for each section.` },
+                            { role: 'user', content: userInput }
                         ]
                     })
                 });

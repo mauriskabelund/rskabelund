@@ -554,7 +554,6 @@
     <main class="two-column-layout">
         <div class="panel patient-panel">
             <h2>AI Patient</h2>
-            <div id="alexStatus" class="alex-status" role="status" aria-live="polite">Loading AI Patient...</div>
             <div id="did-agent" aria-label="AI Patient interactive chat"></div>
             <noscript>
                 <div class="alex-status error" style="position: static; transform: none; margin: 1rem auto;">
@@ -588,38 +587,6 @@
             document.body.style.overflow = document.body.style.overflow === 'hidden' ? '' : 'hidden';
         }
 
-        const alexStatus = document.getElementById('alexStatus');
-        const alexContainer = document.getElementById('did-agent');
-
-        function showAlexError(message) {
-            if (!alexStatus) return;
-            alexStatus.classList.add('error');
-            alexStatus.innerHTML = `${message} <a class="alex-fallback-link" href="tutor.html">Retry</a>`;
-            alexStatus.hidden = false;
-        }
-
-        function markAlexLoaded() {
-            if (!alexStatus) return;
-            alexStatus.hidden = true;
-        }
-
-        const loadObserver = new MutationObserver(() => {
-            if (alexContainer && alexContainer.children.length > 0) {
-                markAlexLoaded();
-                loadObserver.disconnect();
-            }
-        });
-
-        if (alexContainer) {
-            loadObserver.observe(alexContainer, { childList: true, subtree: true });
-        }
-
-        window.setTimeout(() => {
-            if (alexContainer && alexContainer.children.length === 0) {
-                showAlexError('AI Patient failed to load.');
-            }
-        }, 10000);
-        
         // Question Generator Chat
         const questionForm = document.getElementById('question-form');
         const questionInput = document.getElementById('question-input');
@@ -678,8 +645,7 @@
         data-agent-id="v2_agt_Y11oMcJn" 
         data-name="did-agent" 
         data-monitor="true" 
-        data-target-id="did-agent"
-        onerror="showAlexError('Unable to load AI Tutor right now.')">
+        data-target-id="did-agent">
     </script>
 </body>
 </html>

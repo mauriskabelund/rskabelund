@@ -652,14 +652,16 @@
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        message: `Based on this patient interaction, generate 3-5 study questions that would help a medical student understand the underlying concepts:\n\n${userInput}\n\nFormat as a numbered list with clear, specific questions.`,
-                        systemPrompt: 'You are a medical education assistant. Generate thoughtful study questions based on patient cases to help students learn.'
+                        messages: [
+                            { role: 'system', content: 'You are a medical education assistant. Generate thoughtful study questions based on patient cases to help students learn.' },
+                            { role: 'user', content: `Based on this patient interaction, generate 3-5 study questions that would help a medical student understand the underlying concepts:\n\n${userInput}\n\nFormat as a numbered list with clear, specific questions.` }
+                        ]
                     })
                 });
                 
                 const data = await response.json();
                 loadingDiv.remove();
-                addMessage(data.response || data.message || 'Unable to generate questions.', false);
+                addMessage(data.content || 'Unable to generate questions.', false);
             } catch (error) {
                 loadingDiv.remove();
                 addMessage('Error generating questions. Please try again.', false);

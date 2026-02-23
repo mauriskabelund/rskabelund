@@ -1632,9 +1632,10 @@
             .slide {
                 border-radius: 12px;
                 aspect-ratio: auto;
-                max-height: calc(100vh - 190px);
+                max-height: calc(100vh - 170px);
                 width: 100%;
                 max-width: 100%;
+                overflow: hidden;
             }
             
             .slide-content {
@@ -1646,6 +1647,13 @@
             .slide-content-page .slide-content {
                 padding: 1.25rem !important;
                 overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            /* Make gaps slide fully scrollable on mobile */
+            .gaps-slide {
+                overflow-y: auto !important;
+                padding-bottom: 1rem !important;
             }
             
             .slide-title .slide-content {

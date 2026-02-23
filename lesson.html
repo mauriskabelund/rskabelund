@@ -896,6 +896,51 @@
             text-align: center;
         }
         
+        /* Slide popup bubble */
+        .slide-popup {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            padding: 1.5rem 2rem;
+            max-width: 500px;
+            z-index: 100;
+            border: 3px solid var(--byu-navy);
+        }
+        
+        .popup-content p {
+            margin: 0 0 0.75rem 0;
+            font-size: 1rem;
+            line-height: 1.5;
+            color: var(--text-primary);
+        }
+        
+        .popup-content ul {
+            margin: 0.5rem 0 1rem 1.25rem;
+            padding: 0;
+        }
+        
+        .popup-content li {
+            font-size: 1rem;
+            line-height: 1.5;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+        
+        .popup-source {
+            font-size: 0.75rem !important;
+            color: var(--text-secondary);
+            margin-top: 1rem !important;
+            margin-bottom: 0 !important;
+        }
+        
+        .popup-source a {
+            color: var(--byu-navy);
+        }
+        
         /* Summary slide */
         .summary-slide {
             padding: 2rem 3rem !important;
@@ -2194,6 +2239,17 @@
                                 </div>
                             </div>
                             <p class="image-citation" style="margin-top: 0.5rem; text-align: center;">Prevalence in celiac disease at presentation indicated in parentheses where available.<br>Source: JAMA. 2017;318(7):647-656.</p>
+                            <!-- Popup bubble -->
+                            <div id="slide8-popup" class="slide-popup" style="display: none;">
+                                <div class="popup-content">
+                                    <p>However, more than half the adults with celiac disease have symptoms that are not related to the digestive system, including:</p>
+                                    <ul>
+                                        <li><strong>Anemia</strong>, usually from iron deficiency due to decreased iron absorption</li>
+                                        <li><strong>Loss of bone density</strong>, called osteoporosis, or softening of bones, called osteomalacia</li>
+                                    </ul>
+                                    <p class="popup-source">Source: <a href="https://www.mayoclinic.org/diseases-conditions/celiac-disease/symptoms-causes/syc-20352220" target="_blank">Mayo Clinic</a> (accessed 2/23/2026)</p>
+                                </div>
+                            </div>
                         </div>
                         <div class="slide-footer">
                             <div class="slide-logo-bar">
@@ -2310,19 +2366,46 @@
         }
         
         // Navigate slides
+        let slide8PopupShown = false;
+        
         function nextSlide() {
+            // Special handling for slide 8 popup
+            if (currentSlide === 8 && !slide8PopupShown) {
+                const popup = document.getElementById('slide8-popup');
+                popup.style.display = 'block';
+                slide8PopupShown = true;
+                return;
+            }
+            
             if (currentSlide < totalSlides) {
                 goToSlide(currentSlide + 1);
             }
         }
         
         function prevSlide() {
+            // Hide slide 8 popup if going back
+            if (currentSlide === 8 && slide8PopupShown) {
+                const popup = document.getElementById('slide8-popup');
+                popup.style.display = 'none';
+                slide8PopupShown = false;
+                return;
+            }
+            
             if (currentSlide > 1) {
                 goToSlide(currentSlide - 1);
             }
         }
         
         function goToSlide(num) {
+            // Hide slide 8 popup and reset when navigating away
+            const popup = document.getElementById('slide8-popup');
+            if (popup) {
+                popup.style.display = 'none';
+            }
+            if (num !== 8) {
+                slide8PopupShown = false;
+            }
+            
             // Fade out current slide
             const currentSlideEl = document.querySelector('.slide.active');
             if (currentSlideEl) {

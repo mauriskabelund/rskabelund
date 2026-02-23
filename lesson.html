@@ -1299,6 +1299,25 @@
             margin-bottom: 0.25rem;
         }
         
+        /* Diagram popup */
+        .diagram-popup {
+            width: 55%;
+        }
+        
+        .diagram-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem !important;
+        }
+        
+        .diagram-popup-img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: var(--radius-md);
+        }
+        
         /* Case styling */
         .case-slide-content {
             padding: 1.5rem 2rem !important;
@@ -2083,9 +2102,21 @@
                             <div class="gaps-footer">
                                 <button class="gaps-clear" onclick="clearGaps()">Clear All</button>
                                 <button class="review-case-btn" onclick="toggleCasePopup()">📋 Review Case</button>
+                                <button class="review-case-btn" onclick="toggleDiagramPopup()">🔬 View Diagram</button>
                                 <a href="https://www.openevidence.com/" target="_blank" class="open-evidence-link">
                                     🔬 Use OpenEvidence to find answers →
                                 </a>
+                            </div>
+                            
+                            <!-- Diagram Popup -->
+                            <div id="diagramPopup" class="case-popup diagram-popup">
+                                <div class="case-popup-header">
+                                    <span>Absorption Diagram</span>
+                                    <button class="case-popup-minimize" onclick="toggleDiagramPopup()">−</button>
+                                </div>
+                                <div class="case-popup-content diagram-content">
+                                    <img src="gi-tract.jpg" alt="GI tract diagram showing nutrient absorption locations" class="diagram-popup-img">
+                                </div>
                             </div>
                             
                             <!-- Case Popup -->
@@ -2738,6 +2769,15 @@
         function toggleCasePopup() {
             const popup = document.getElementById('casePopup');
             popup.classList.toggle('active');
+            // Close diagram popup if open
+            document.getElementById('diagramPopup')?.classList.remove('active');
+        }
+        
+        function toggleDiagramPopup() {
+            const popup = document.getElementById('diagramPopup');
+            popup.classList.toggle('active');
+            // Close case popup if open
+            document.getElementById('casePopup')?.classList.remove('active');
         }
         
         function revealAnswer() {

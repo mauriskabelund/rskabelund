@@ -2558,9 +2558,88 @@
             }
         }
         
-        // Gaps in Knowledge functionality
+        // ============================================
+        // Firebase Real-Time Gaps in Knowledge
+        // ============================================
+        
+        // Firebase config
+        const firebaseConfig = {
+            projectId: "rskabelund-site",
+            appId: "1:753767485942:web:4029c5ee324b5b93edb7d7",
+            databaseURL: "https://rskabelund-site-default-rtdb.firebaseio.com",
+            apiKey: "AIzaSyBhK6EiiLc8Mm9Hib-mB0EXWexwfJXkL2Y",
+            authDomain: "rskabelund-site.firebaseapp.com"
+        };
+        
+        // Initialize Firebase (using compat mode for simplicity)
+        let db;
+        let gapsRef;
+        let answersRef;
         let gapsQuestions = [];
         let gapsAnswers = {};
+        
+        // Load Firebase SDK dynamically
+        function loadFirebase() {
+            return new Promise((resolve, reject) => {
+                // Load Firebase App
+                const appScript = document.createElement('script');
+                appScript.src = 'https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js';
+                appScript.onload = () => {
+                    // Load Firebase Database
+                    const dbScript = document.createElement('script');
+                    dbScript.src = 'https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js';
+                    dbScript.onload = () => {
+                        // Initialize Firebase
+                        if (!firebase.apps.length) {
+                            firebase.initializeApp(firebaseConfig);
+                        }
+                        db = firebase.database();
+                        gapsRef = db.ref('gaps/questions');
+                        answersRef = db.ref('gaps/answers');
+                        
+                        // Set up real-time listeners
+                        setupFirebaseListeners();
+                        resolve();
+                    };
+                    dbScript.onerror = reject;
+                    document.head.appendChild(dbScript);
+                };
+                appScript.onerror = reject;
+                document.head.appendChild(appScript);
+            });
+        }
+        
+        function setupFirebaseListeners() {
+            // Listen for questions changes
+            gapsRef.on('value', (snapshot) => {
+                const data = snapshot.val();
+                gapsQuestions = data ? Object.values(data) : [];
+                renderGaps();
+            });
+            
+            // Listen for answers changes
+            answersRef.on('value', (snapshot) => {
+                const data = snapshot.val();
+                gapsAnswers = {};
+                if (data) {
+                    Object.values(data).forEach(answer => {
+                        const num = answer.questionNum;
+                        if (!gapsAnswers[num]) {
+                            gapsAnswers[num] = [];
+                        }
+                        gapsAnswers[num].push(answer.text);
+                    });
+                }
+                renderAnswers();
+            });
+        }
+        
+        // Initialize Firebase when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            loadFirebase().catch(err => {
+                console.error('Failed to load Firebase:', err);
+            });
+        });
         
         function handleGapsKeypress(e) {
             if (e.key === 'Enter') {
@@ -2577,10 +2656,10 @@
         function submitGap() {
             const input = document.getElementById('gapsInput');
             const question = input.value.trim();
-            if (!question) return;
+            if (!question || !gapsRef) return;
             
-            gapsQuestions.push(question);
-            renderGaps();
+            // Push to Firebase (will auto-sync to all clients)
+            gapsRef.push(question);
             input.value = '';
             input.focus();
         }
@@ -2595,30 +2674,31 @@
                 numInput.focus();
                 return;
             }
-            if (!answer) {
+            if (!answer || !answersRef) {
                 answerInput.focus();
                 return;
             }
             
-            if (!gapsAnswers[num]) {
-                gapsAnswers[num] = [];
-            }
-            gapsAnswers[num].push(answer);
-            renderAnswers();
+            // Push to Firebase
+            answersRef.push({
+                questionNum: num,
+                text: answer
+            });
+            
             answerInput.value = '';
             numInput.value = '';
             numInput.focus();
         }
         
         function clearGaps() {
-            gapsQuestions = [];
-            gapsAnswers = {};
-            renderGaps();
-            renderAnswers();
+            if (!db) return;
+            // Clear both questions and answers in Firebase
+            db.ref('gaps').remove();
         }
         
         function renderGaps() {
             const display = document.getElementById('gapsDisplay');
+            if (!display) return;
             
             if (gapsQuestions.length === 0) {
                 display.innerHTML = '<p class="gaps-placeholder">Questions will appear here...</p>';
@@ -2631,6 +2711,8 @@
         
         function renderAnswers() {
             const display = document.getElementById('answersDisplay');
+            if (!display) return;
+            
             const answerEntries = Object.entries(gapsAnswers);
             
             if (answerEntries.length === 0) {

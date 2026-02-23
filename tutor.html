@@ -85,12 +85,17 @@
         header {
             background: var(--byu-navy);
             padding: 1rem 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
             box-shadow: 0 2px 10px rgba(0, 46, 93, 0.2);
             position: relative;
             z-index: 100;
+        }
+        
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
         
         .header-brand {
@@ -526,15 +531,17 @@
 </head>
 <body>
     <header>
-        <a href="index.html" class="header-brand">
-            <span class="logo-text">BYU</span>
-            <span class="header-text">School of Medicine</span>
-        </a>
-        <button class="menu-toggle" aria-label="Menu" onclick="toggleMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
+        <div class="header-inner">
+            <a href="index.html" class="header-brand">
+                <span class="logo-text">BYU</span>
+                <span class="header-text">School of Medicine</span>
+            </a>
+            <button class="menu-toggle" aria-label="Menu" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
     </header>
     
     <div class="overlay" onclick="toggleMenu()"></div>

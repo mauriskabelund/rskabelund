@@ -628,7 +628,8 @@
         function addMessage(content, isUser) {
             const div = document.createElement('div');
             div.className = isUser ? 'message user-message' : 'message ai-message';
-            div.innerHTML = content;
+            // Convert newlines to <br> for proper formatting
+            div.innerHTML = content.replace(/\n/g, '<br>');
             questionMessages.appendChild(div);
             questionMessages.scrollTop = questionMessages.scrollHeight;
         }

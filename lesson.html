@@ -2159,6 +2159,7 @@
                     <button class="progress-dot" onclick="goToSlide(7)" aria-label="Slide 7"></button>
                     <button class="progress-dot" onclick="goToSlide(8)" aria-label="Slide 8"></button>
                     <button class="progress-dot" onclick="goToSlide(9)" aria-label="Slide 9"></button>
+                    <button class="progress-dot" onclick="goToSlide(10)" aria-label="Slide 10"></button>
                 </div>
                 <div class="slides-wrapper">
                     <!-- Slide 1: Title -->
@@ -2467,8 +2468,27 @@
                         </div>
                     </div>
                     
-                    <!-- Slide 9: Summary -->
+                    <!-- Slide 9: Why not cation transporter deficiency? -->
                     <div class="slide slide-content-page" data-slide="9">
+                        <div class="slide-content">
+                            <h2>Why not cation transporter deficiency?</h2>
+                            <ul>
+                                <li>Iron and calcium use different transporters to cross cell membranes</li>
+                                <li>These transporters are separately regulated, and deficiency of either is very rare (so being deficient in both is unlikely)</li>
+                                <li>Algerians have very high rates of celiac disease in their population (~5%), making it more likely than cation transporter deficiency</li>
+                                <li>Confirm celiac disease with tTG IgA antibody test while on gluten, followed by duodenal biopsy if positive</li>
+                            </ul>
+                        </div>
+                        <div class="slide-footer">
+                            <div class="slide-logo-bar">
+                                <span class="slide-logo-text"><strong>BYU</strong> | School of Medicine</span>
+                                <div class="slide-blue-bar"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 10: Summary -->
+                    <div class="slide slide-content-page" data-slide="10">
                         <div class="slide-content summary-slide">
                             <h2>Summary</h2>
                             <ul class="summary-points">
@@ -2524,7 +2544,8 @@
                         <button class="slide-menu-item" onclick="goToSlide(6)">6. Case</button>
                         <button class="slide-menu-item" onclick="goToSlide(7)">7. Case Review</button>
                         <button class="slide-menu-item" onclick="goToSlide(8)">8. Case Review</button>
-                        <button class="slide-menu-item" onclick="goToSlide(9)">9. Summary</button>
+                        <button class="slide-menu-item" onclick="goToSlide(9)">9. Why Not Cation?</button>
+                        <button class="slide-menu-item" onclick="goToSlide(10)">10. Summary</button>
                     </div>
                 </div>
                 
@@ -2563,7 +2584,7 @@
         
         // Presentation variables
         let currentSlide = 1;
-        const totalSlides = 9;
+        const totalSlides = 10;
         
         // Open presentation
         function openPresentation() {

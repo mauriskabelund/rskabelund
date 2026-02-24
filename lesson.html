@@ -2700,6 +2700,42 @@
             }
         }
         
+        function getSlideContext() {
+            const activeSlide = document.querySelector('.slide.active');
+            if (!activeSlide) return null;
+            
+            const slideNum = activeSlide.dataset.slide;
+            const slideContent = activeSlide.querySelector('.slide-content');
+            
+            // Extract text content
+            let textContent = '';
+            const heading = slideContent.querySelector('h1, h2');
+            if (heading) textContent += heading.textContent + '\n\n';
+            
+            // Get paragraphs and list items
+            slideContent.querySelectorAll('p, li').forEach(el => {
+                if (!el.closest('.slide-footer')) {
+                    textContent += el.textContent.trim() + '\n';
+                }
+            });
+            
+            // Get image URLs
+            const images = [];
+            slideContent.querySelectorAll('img').forEach(img => {
+                if (img.src) {
+                    // Convert relative URLs to absolute
+                    const absoluteUrl = new URL(img.src, window.location.origin).href;
+                    images.push({ url: absoluteUrl, alt: img.alt || '' });
+                }
+            });
+            
+            return {
+                slideNumber: slideNum,
+                text: textContent.trim(),
+                images: images
+            };
+        }
+        
         async function sendSlideChat() {
             const input = document.getElementById('slideChat');
             const question = input.value.trim();
@@ -2711,12 +2747,16 @@
             contentDiv.innerHTML = '<p><em>Thinking...</em></p>';
             responseDiv.classList.add('active');
             
+            // Get current slide context
+            const slideContext = getSlideContext();
+            
             try {
                 const response = await fetch('/api/chat', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ 
-                        messages: [{ role: 'user', content: question }]
+                        messages: [{ role: 'user', content: question }],
+                        slideContext: slideContext
                     })
                 });
                 

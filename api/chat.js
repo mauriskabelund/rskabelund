@@ -1,9 +1,30 @@
 // Rachel's AI Chat - Vercel Serverless Function (OpenAI)
 // Edit the SYSTEM_PROMPT below to customize the AI's behavior
 
-const SYSTEM_PROMPT = `You are a helpful AI assistant on Rachel Skabelund's website. 
+const BASE_SYSTEM_PROMPT = `You are a helpful AI tutor for Rachel Skabelund's medical metabolism course (MED 604) at BYU School of Medicine.
 Be friendly, professional, and concise in your responses.
-You can help with questions about nursing, healthcare, education, or general topics.`;
+Focus on helping students understand biochemistry concepts related to nutrient absorption, metabolism, and clinical cases.
+When answering questions, relate concepts back to the learning objectives and clinical relevance.`;
+
+function buildSystemPrompt(slideContext) {
+  if (!slideContext) return BASE_SYSTEM_PROMPT;
+  
+  let prompt = BASE_SYSTEM_PROMPT + '\n\n';
+  prompt += `--- CURRENT SLIDE CONTEXT (Slide ${slideContext.slideNumber}) ---\n`;
+  prompt += slideContext.text + '\n';
+  
+  if (slideContext.images && slideContext.images.length > 0) {
+    prompt += '\nImages on this slide:\n';
+    slideContext.images.forEach(img => {
+      prompt += `- ${img.alt || 'Image'}: ${img.url}\n`;
+    });
+  }
+  
+  prompt += '\n--- END SLIDE CONTEXT ---\n';
+  prompt += '\nThe student is asking about the content shown on this slide. Use the slide context to provide relevant, focused answers.';
+  
+  return prompt;
+}
 
 export default async function handler(req, res) {
   // CORS headers
@@ -26,15 +47,18 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { messages } = req.body;
+    const { messages, slideContext } = req.body;
 
     if (!messages || !Array.isArray(messages)) {
       return res.status(400).json({ error: 'Messages array required' });
     }
 
+    // Build system prompt with optional slide context
+    const systemPrompt = buildSystemPrompt(slideContext);
+
     // Add system message at the start
     const fullMessages = [
-      { role: 'system', content: SYSTEM_PROMPT },
+      { role: 'system', content: systemPrompt },
       ...messages
     ];
 

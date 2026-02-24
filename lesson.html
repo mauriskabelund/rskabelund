@@ -1907,6 +1907,24 @@
                 width: min(220px, 70%);
                 margin: 0 auto;
             }
+            
+            /* Slide 7 Case Review - stack villi diagram and question vertically */
+            .villi-question-row {
+                flex-direction: column;
+                gap: 1rem;
+                max-height: none;
+            }
+            
+            .villi-diagram {
+                max-width: 70%;
+                width: auto;
+            }
+            
+            .villi-question-row .case-review-question {
+                max-width: 100%;
+                text-align: center;
+                font-size: 1.2rem !important;
+            }
         }
 
         @media (max-width: 600px) {

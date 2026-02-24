@@ -1881,18 +1881,22 @@
             }
             
             .case-popup {
-                top: 3rem;
-                right: 0;
-                left: 0;
-                width: auto;
-                bottom: 0.25rem;
+                position: fixed !important;
+                top: 80px !important;
+                right: 1rem !important;
+                left: 1rem !important;
+                bottom: 1rem !important;
+                width: auto !important;
+                max-width: none !important;
                 border-radius: 12px;
-                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+                z-index: 1000;
             }
             
             .case-popup-content {
                 font-size: 0.95rem;
                 padding: 1rem;
+                overflow-y: auto;
             }
             
             .case-layout {

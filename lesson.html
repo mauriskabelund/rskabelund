@@ -957,7 +957,14 @@
         }
         
         .cation-slide h2 {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .cation-layout {
+            display: flex;
+            gap: 2rem;
+            flex: 1;
+            align-items: flex-start;
         }
         
         .spaced-bullets {
@@ -967,14 +974,26 @@
             flex-direction: column;
             justify-content: space-around;
             flex: 1;
-            padding: 1rem 0;
+            padding: 0.5rem 0;
         }
         
         .spaced-bullets li {
-            font-size: 1.25rem;
-            line-height: 1.5;
+            font-size: 1.1rem;
+            line-height: 1.45;
             color: var(--text-primary);
-            padding: 0.5rem 0;
+            padding: 0.4rem 0;
+        }
+        
+        .cation-image {
+            flex: 0 0 auto;
+            max-width: 280px;
+        }
+        
+        .cation-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
         
         /* Summary slide */
@@ -2499,12 +2518,17 @@
                     <div class="slide slide-content-page" data-slide="9">
                         <div class="slide-content cation-slide">
                             <h2>Why not cation transporter deficiency?</h2>
-                            <ul class="spaced-bullets">
-                                <li>Iron and calcium use different transporters to cross cell membranes</li>
-                                <li>These transporters are separately regulated, and deficiency of either is very rare</li>
-                                <li>Algerians have very high rates of celiac disease in their population (~5%), making it more likely</li>
-                                <li>Confirm celiac disease with tTG IgA antibody test while on gluten, followed by duodenal biopsy if positive</li>
-                            </ul>
+                            <div class="cation-layout">
+                                <ul class="spaced-bullets">
+                                    <li>Iron and calcium use different transporters to cross cell membranes</li>
+                                    <li>These transporters are separately regulated, and deficiency of either is very rare</li>
+                                    <li>Algerians have very high rates of celiac disease in their population (~5%), making it more likely</li>
+                                    <li>Confirm celiac disease with tTG IgA antibody test while on gluten, followed by duodenal biopsy if positive</li>
+                                </ul>
+                                <div class="cation-image">
+                                    <img src="transporters.jpg" alt="Iron and calcium transporters in the small intestine enterocyte">
+                                </div>
+                            </div>
                         </div>
                         <div class="slide-footer">
                             <div class="slide-logo-bar">

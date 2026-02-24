@@ -3083,6 +3083,7 @@
         
         function clearGaps() {
             if (!db) return;
+            if (!confirm('Clear all responses? This cannot be undone.')) return;
             // Clear both questions and answers in Firebase
             db.ref('gaps').remove();
         }

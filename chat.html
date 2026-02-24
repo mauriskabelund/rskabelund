@@ -721,32 +721,6 @@
             }
         });
         
-        function toggleTips() {
-            const content = document.getElementById('tipsContent');
-            const toggle = document.getElementById('tipsToggle');
-            const header = document.getElementById('tipsHeader');
-            const isCollapsed = content.classList.toggle('collapsed');
-            toggle.classList.toggle('collapsed', isCollapsed);
-            header.setAttribute('aria-expanded', String(!isCollapsed));
-            sessionStorage.setItem('tips_collapsed', isCollapsed);
-        }
-
-        document.getElementById('tipsHeader').addEventListener('keydown', (event) => {
-            if (event.key === 'Enter' || event.key === ' ') {
-                event.preventDefault();
-                toggleTips();
-            }
-        });
-        
-        // Restore tips state on load
-        (function() {
-            if (sessionStorage.getItem('tips_collapsed') === 'true') {
-                document.getElementById('tipsContent').classList.add('collapsed');
-                document.getElementById('tipsToggle').classList.add('collapsed');
-                document.getElementById('tipsHeader').setAttribute('aria-expanded', 'false');
-            }
-        })();
-        
         const chatMessages = document.getElementById('chatMessages');
         const chatInput = document.getElementById('chatInput');
         const sendBtn = document.getElementById('sendBtn');

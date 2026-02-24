@@ -1286,6 +1286,65 @@
             border-color: #999;
         }
         
+        .confirm-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+        
+        .confirm-modal-content {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            max-width: 280px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+        
+        .confirm-modal-content p {
+            margin: 0 0 1.25rem;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+        }
+        
+        .confirm-modal-content small {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+        
+        .confirm-modal-buttons {
+            display: flex;
+            gap: 0.75rem;
+            justify-content: center;
+        }
+        
+        .confirm-cancel, .confirm-yes {
+            padding: 0.6rem 1.25rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            min-height: var(--min-touch-target);
+        }
+        
+        .confirm-cancel {
+            background: var(--bg-light);
+            color: var(--text-primary);
+        }
+        
+        .confirm-yes {
+            background: #e74c3c;
+            color: white;
+        }
+        
         .review-case-btn {
             background: var(--gold);
             color: var(--text-primary);
@@ -2359,8 +2418,19 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- Clear Confirmation Modal -->
+                            <div id="clearConfirmModal" class="confirm-modal" style="display: none;">
+                                <div class="confirm-modal-content">
+                                    <p>Clear all responses?<br><small>This cannot be undone.</small></p>
+                                    <div class="confirm-modal-buttons">
+                                        <button class="confirm-cancel" onclick="hideClearConfirm()">Cancel</button>
+                                        <button class="confirm-yes" onclick="confirmClearGaps()">Clear All</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
                             <div class="gaps-footer">
-                                <button class="gaps-clear" onclick="clearGaps()">Clear All</button>
+                                <button class="gaps-clear" onclick="showClearConfirm()">Clear All</button>
                                 <button class="review-case-btn" onclick="toggleCasePopup()">📋 Review Case</button>
                                 <button class="review-case-btn" onclick="toggleDiagramPopup()">🔬 View Diagram</button>
                                 <a href="https://www.openevidence.com/" target="_blank" class="open-evidence-link">
@@ -3081,11 +3151,19 @@
             numInput.focus();
         }
         
-        function clearGaps() {
+        function showClearConfirm() {
+            document.getElementById('clearConfirmModal').style.display = 'flex';
+        }
+        
+        function hideClearConfirm() {
+            document.getElementById('clearConfirmModal').style.display = 'none';
+        }
+        
+        function confirmClearGaps() {
             if (!db) return;
-            if (!confirm('Clear all responses? This cannot be undone.')) return;
             // Clear both questions and answers in Firebase
             db.ref('gaps').remove();
+            hideClearConfirm();
         }
         
         function renderGaps() {

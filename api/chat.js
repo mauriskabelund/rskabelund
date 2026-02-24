@@ -1,27 +1,44 @@
 // Rachel's AI Chat - Vercel Serverless Function (OpenAI)
 // Edit the SYSTEM_PROMPT below to customize the AI's behavior
 
-const BASE_SYSTEM_PROMPT = `You are a helpful AI tutor for Rachel Skabelund's medical metabolism course (MED 604) at BYU School of Medicine.
-Be friendly, professional, and concise in your responses.
+const BASE_SYSTEM_PROMPT = `You are a helpful AI tutor for Rachel Skabelund's medical metabolism course at BYU School of Medicine.
+Be friendly, professional, and educational in your responses.
 Focus on helping students understand biochemistry concepts related to nutrient absorption, metabolism, and clinical cases.
-When answering questions, relate concepts back to the learning objectives and clinical relevance.`;
+When answering questions, relate concepts back to the learning objectives and clinical relevance.
+Be concise but thorough - medical students need accurate, detailed information.`;
 
 function buildSystemPrompt(slideContext) {
   if (!slideContext) return BASE_SYSTEM_PROMPT;
   
   let prompt = BASE_SYSTEM_PROMPT + '\n\n';
-  prompt += `--- CURRENT SLIDE CONTEXT (Slide ${slideContext.slideNumber}) ---\n`;
+  
+  // Add lesson overview
+  if (slideContext.lessonOverview) {
+    const lesson = slideContext.lessonOverview;
+    prompt += `=== LESSON OVERVIEW ===\n`;
+    prompt += `Course: ${lesson.course}\n`;
+    prompt += `Week ${lesson.week}: ${lesson.topic}\n\n`;
+    prompt += `Learning Objectives:\n`;
+    lesson.objectives.forEach((obj, i) => {
+      prompt += `${i + 1}. ${obj}\n`;
+    });
+    prompt += '\n';
+  }
+  
+  // Add current slide context
+  prompt += `=== CURRENT SLIDE (${slideContext.slideNumber} of ${slideContext.totalSlides}) ===\n`;
   prompt += slideContext.text + '\n';
   
+  // Add detailed image descriptions
   if (slideContext.images && slideContext.images.length > 0) {
-    prompt += '\nImages on this slide:\n';
+    prompt += '\n--- IMAGES ON THIS SLIDE ---\n';
     slideContext.images.forEach(img => {
-      prompt += `- ${img.alt || 'Image'}: ${img.url}\n`;
+      prompt += `\n[${img.filename}]\n${img.description}\n`;
     });
   }
   
-  prompt += '\n--- END SLIDE CONTEXT ---\n';
-  prompt += '\nThe student is asking about the content shown on this slide. Use the slide context to provide relevant, focused answers.';
+  prompt += '\n=== END CONTEXT ===\n';
+  prompt += '\nThe student is viewing this slide and asking a question. Use ALL the context above (lesson objectives, slide content, and image descriptions) to provide a relevant, educational answer. If they ask about an image, describe what it shows and explain its significance.';
   
   return prompt;
 }

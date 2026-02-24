@@ -2727,6 +2727,24 @@
             }
         }
         
+        // Lesson overview and image descriptions for AI context
+        const LESSON_CONTEXT = {
+            course: "MED 604 - Medical Metabolism",
+            week: 7,
+            topic: "Nutrient Absorption in the Small Intestine",
+            objectives: [
+                "Identify key nutrients absorbed and their locations in the small intestine",
+                "Connect clinical presentation of GI pathologies to plausible biochemical pathways",
+                "Utilize AI tools to deepen understanding of nutrient absorption in the small intestine"
+            ],
+            imageDescriptions: {
+                "gi-tract.jpg": "Diagram of the GI tract showing the three regions of the small intestine (duodenum, jejunum, ileum) with labeled nutrient absorption sites. The duodenum absorbs iron, calcium, and fat-soluble vitamins. The jejunum is the primary site for carbohydrates, proteins, fats, and water-soluble vitamins. The ileum absorbs vitamin B12 and bile salts. The diagram shows the relative positions and lengths of each segment.",
+                "patient.jpg": "Clinical case photo: A 41-year-old woman of Algerian descent presenting with symptoms of iron deficiency anemia (hemoglobin 7.8 g/dL) and later osteoporosis after a low-impact wrist fracture. Key findings: no menstrual bleeding (on hormone therapy for endometriosis), unmeasurable serum ferritin, pallor, shortness of breath on exertion.",
+                "biopsy.jpg": "Side-by-side comparison of duodenal biopsy samples. Left: Normal healthy duodenal mucosa with tall, finger-like villi providing maximum surface area for absorption. Right: Celiac disease showing villous atrophy - flattened, blunted villi with increased intraepithelial lymphocytes and crypt hyperplasia, dramatically reducing absorptive surface area.",
+                "villi-diagram.jpg": "Illustration comparing normal intestinal villi structure versus celiac disease damage. Normal villi are tall, finger-like projections covered in microvilli (brush border) that maximize surface area. In celiac disease, the villi are flattened or absent due to immune-mediated damage from gluten exposure, leading to malabsorption of nutrients."
+            }
+        };
+        
         function getSlideContext() {
             const activeSlide = document.querySelector('.slide.active');
             if (!activeSlide) return null;
@@ -2746,18 +2764,20 @@
                 }
             });
             
-            // Get image URLs
+            // Get images with detailed descriptions
             const images = [];
             slideContent.querySelectorAll('img').forEach(img => {
                 if (img.src) {
-                    // Convert relative URLs to absolute
-                    const absoluteUrl = new URL(img.src, window.location.origin).href;
-                    images.push({ url: absoluteUrl, alt: img.alt || '' });
+                    const filename = img.src.split('/').pop().split('?')[0];
+                    const description = LESSON_CONTEXT.imageDescriptions[filename] || img.alt || 'Image';
+                    images.push({ filename, description });
                 }
             });
             
             return {
+                lessonOverview: LESSON_CONTEXT,
                 slideNumber: slideNum,
+                totalSlides: totalSlides,
                 text: textContent.trim(),
                 images: images
             };

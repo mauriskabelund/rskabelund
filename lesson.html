@@ -1622,6 +1622,26 @@
         }
         
         /* Mobile + Tablet */
+        /* Intermediate breakpoint for tablets and smaller desktops */
+        @media (max-width: 1100px) {
+            .slide {
+                aspect-ratio: auto;
+                max-height: calc(100vh - 140px);
+            }
+            
+            .slide-content {
+                overflow-y: auto;
+            }
+            
+            .slide-title .slide-content {
+                padding-top: 8%;
+            }
+            
+            .slide-content-page .slide-content {
+                overflow-y: auto;
+            }
+        }
+        
         @media (max-width: 768px) {
             .slide-preview {
                 aspect-ratio: auto;

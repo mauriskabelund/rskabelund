@@ -1,5 +1,4 @@
 // Rachel's AI Chat - Vercel Serverless Function (OpenAI)
-// Edit the SYSTEM_PROMPT below to customize the AI's behavior
 
 const BASE_SYSTEM_PROMPT = `You are a helpful AI tutor for Rachel Skabelund's medical metabolism course at BYU School of Medicine.
 Be friendly, professional, and educational in your responses.
@@ -7,9 +6,8 @@ Focus on helping students understand biochemistry concepts related to nutrient a
 When answering questions, relate concepts back to the learning objectives and clinical relevance.
 Be concise but thorough - medical students need accurate, detailed information.`;
 
-function buildSystemPrompt(slideContext) {
-  if (!slideContext) return BASE_SYSTEM_PROMPT;
-  
+// Build prompt for in-slide chat (slideContext from lesson.html)
+function buildSlidePrompt(slideContext) {
   let prompt = BASE_SYSTEM_PROMPT + '\n\n';
   
   // Add lesson overview
@@ -38,7 +36,38 @@ function buildSystemPrompt(slideContext) {
   }
   
   prompt += '\n=== END CONTEXT ===\n';
-  prompt += '\nThe student is viewing this slide and asking a question. Use ALL the context above (lesson objectives, slide content, and image descriptions) to provide a relevant, educational answer. If they ask about an image, describe what it shows and explain its significance.';
+  prompt += '\nThe student is viewing this slide and asking a question. Use ALL the context above to provide a relevant, educational answer.';
+  
+  return prompt;
+}
+
+// Build prompt for standalone chat page (lessonContext from chat.html)
+function buildLessonPrompt(lessonContext) {
+  let prompt = BASE_SYSTEM_PROMPT + '\n\n';
+  
+  prompt += `=== FULL LESSON CONTEXT ===\n`;
+  prompt += `Course: ${lessonContext.course}\n`;
+  prompt += `Week ${lessonContext.week}: ${lessonContext.topic}\n\n`;
+  
+  prompt += `Learning Objectives:\n`;
+  lessonContext.objectives.forEach((obj, i) => {
+    prompt += `${i + 1}. ${obj}\n`;
+  });
+  
+  prompt += `\n--- ALL SLIDES ---\n`;
+  lessonContext.slides.forEach(slide => {
+    prompt += `\nSlide ${slide.number}: ${slide.title}\n`;
+    prompt += slide.content + '\n';
+    if (slide.image) prompt += `[Image: ${slide.image}]\n`;
+  });
+  
+  prompt += `\n--- KEY TERMS ---\n`;
+  lessonContext.keyTerms.forEach(term => {
+    prompt += `• ${term}\n`;
+  });
+  
+  prompt += '\n=== END CONTEXT ===\n';
+  prompt += '\nYou have access to the entire lesson content. Help the student understand any aspect of nutrient absorption, the clinical case, or related biochemistry concepts.';
   
   return prompt;
 }
@@ -64,14 +93,19 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { messages, slideContext } = req.body;
+    const { messages, slideContext, lessonContext } = req.body;
 
     if (!messages || !Array.isArray(messages)) {
       return res.status(400).json({ error: 'Messages array required' });
     }
 
-    // Build system prompt with optional slide context
-    const systemPrompt = buildSystemPrompt(slideContext);
+    // Build system prompt based on context type
+    let systemPrompt = BASE_SYSTEM_PROMPT;
+    if (slideContext) {
+      systemPrompt = buildSlidePrompt(slideContext);
+    } else if (lessonContext) {
+      systemPrompt = buildLessonPrompt(lessonContext);
+    }
 
     // Add system message at the start
     const fullMessages = [

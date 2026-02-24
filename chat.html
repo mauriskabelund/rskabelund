@@ -798,6 +798,77 @@
         let toastTimer;
         let pendingRetry = null;
         
+        // Full lesson context for AI
+        const LESSON_CONTEXT = {
+            course: "MED 604 - Medical Metabolism",
+            week: 7,
+            topic: "Nutrient Absorption in the Small Intestine",
+            objectives: [
+                "Identify key nutrients absorbed and their locations in the small intestine",
+                "Connect clinical presentation of GI pathologies to plausible biochemical pathways",
+                "Utilize AI tools to deepen understanding of nutrient absorption in the small intestine"
+            ],
+            slides: [
+                {
+                    number: 1,
+                    title: "Title Slide",
+                    content: "Week 7: Nutrient Absorption in the Small Intestine. Scripture from D&C 89:16, 18 about grain and health."
+                },
+                {
+                    number: 2,
+                    title: "Learning Objectives",
+                    content: "Three objectives covering nutrient absorption locations, clinical-biochemical connections, and AI tool usage."
+                },
+                {
+                    number: 3,
+                    title: "Review of Primary Locations for Nutrient Absorption",
+                    content: "Diagram showing: Duodenum absorbs iron, calcium, fat-soluble vitamins. Jejunum (primary absorption site) handles carbohydrates, proteins, fats, water-soluble vitamins. Ileum absorbs vitamin B12 and bile salts.",
+                    image: "GI tract diagram showing the three regions of the small intestine with labeled nutrient absorption sites."
+                },
+                {
+                    number: 4,
+                    title: "Clinical Case",
+                    content: "41-year-old Algerian woman with hemoglobin 7.8 g/dL, unmeasurable ferritin, on hormone therapy for endometriosis (no menstrual bleeding 5 years). Symptoms: shortness of breath, pallor. Iron supplements raised hemoglobin to 12 g/dL. Four years later: wrist fracture from low-impact fall, DEXA showed osteoporosis. Question: What is the most likely underlying cause? Options: A) Cation transporter deficiency, B) Chronic hepatitis B, C) Chronic small intestine bacteria overgrowth, D) Celiac Disease",
+                    image: "Patient photo for the clinical case."
+                },
+                {
+                    number: 5,
+                    title: "Gaps in Knowledge",
+                    content: "Interactive slide where students identify gaps in understanding and formulate questions."
+                },
+                {
+                    number: 6,
+                    title: "AI-Assisted Learning",
+                    content: "Students use AI chat to explore their knowledge gaps and answer questions about the case and nutrient absorption."
+                },
+                {
+                    number: 7,
+                    title: "Discussion & Case Answer",
+                    content: "The answer is D) Celiac Disease. Explanation: The patient shows signs of iron malabsorption (anemia despite no blood loss) and calcium/vitamin D malabsorption (osteoporosis). Celiac disease causes villous atrophy in the small intestine, reducing absorptive surface area. Her Algerian descent is relevant as celiac disease is common in North African populations.",
+                    image: "Biopsy comparison showing healthy duodenal villi vs. celiac disease with villous atrophy, crypt hyperplasia, and increased intraepithelial lymphocytes."
+                },
+                {
+                    number: 8,
+                    title: "Case Review - Celiac Disease Pathophysiology",
+                    content: "Celiac disease is an autoimmune condition triggered by gluten. In genetically susceptible individuals (HLA-DQ2/DQ8), gluten peptides trigger immune response causing villous atrophy. This reduces surface area for absorption of iron (duodenum), calcium and vitamin D (proximal small intestine), leading to anemia and osteoporosis.",
+                    image: "Diagram comparing normal villi structure vs. celiac disease damaged villi."
+                },
+                {
+                    number: 9,
+                    title: "Summary & Key Takeaways",
+                    content: "Key points: Different nutrients absorbed in specific regions of small intestine. Celiac disease causes malabsorption through villous atrophy. Clinical presentation (anemia + osteoporosis without obvious cause) should raise suspicion for malabsorption syndromes."
+                }
+            ],
+            keyTerms: [
+                "Villous atrophy - flattening of intestinal villi reducing absorptive surface",
+                "Celiac disease - autoimmune reaction to gluten causing small intestine damage",
+                "Malabsorption - impaired nutrient uptake from the GI tract",
+                "Duodenum - first part of small intestine, absorbs iron, calcium, fat-soluble vitamins",
+                "Jejunum - middle section, primary site for most nutrient absorption",
+                "Ileum - final section, absorbs B12 and bile salts"
+            ]
+        };
+        
         // Check for pre-filled prompt from URL
         (function() {
             const params = new URLSearchParams(window.location.search);
@@ -953,7 +1024,8 @@
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        messages: conversationHistory
+                        messages: conversationHistory,
+                        lessonContext: LESSON_CONTEXT
                     })
                 });
 

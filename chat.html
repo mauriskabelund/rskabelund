@@ -411,24 +411,6 @@
             gap: 0.45rem;
         }
 
-        .cite-button {
-            background: transparent;
-            color: var(--byu-navy);
-            border: 1px solid rgba(0, 46, 93, 0.25);
-            border-radius: 999px;
-            min-width: var(--min-touch-target);
-            min-height: var(--min-touch-target);
-            padding: 0.25rem 0.85rem;
-            font-size: 0.78rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .cite-button:hover {
-            background: rgba(0, 46, 93, 0.08);
-            border-color: rgba(0, 46, 93, 0.45);
-        }
-
         .assistant-verify-note {
             font-size: 0.74rem;
             line-height: 1.4;
@@ -792,8 +774,6 @@
         const sendBtn = document.getElementById('sendBtn');
         const typingIndicator = document.getElementById('typingIndicator');
         const copyToast = document.getElementById('copyToast');
-        const CITATION_TEXT = 'OpenAI. (2026). ChatGPT [Large language model]. https://chat.openai.com';
-        
         let conversationHistory = [];
         let toastTimer;
         let pendingRetry = null;
@@ -903,20 +883,6 @@
             document.body.removeChild(helper);
         }
 
-        async function copyCitation() {
-            try {
-                if (navigator.clipboard && window.isSecureContext) {
-                    await navigator.clipboard.writeText(CITATION_TEXT);
-                } else {
-                    fallbackCopyText(CITATION_TEXT);
-                }
-                showCopyToast('Copied!');
-            } catch (error) {
-                console.error('Copy failed:', error);
-                showCopyToast('Copy failed');
-            }
-        }
-
         function addMessage(content, role, options = {}) {
             const { includeAiFooter = role === 'assistant' } = options;
             const messageDiv = document.createElement('div');
@@ -931,17 +897,10 @@
                 const metaDiv = document.createElement('div');
                 metaDiv.className = 'assistant-meta';
 
-                const citeButton = document.createElement('button');
-                citeButton.type = 'button';
-                citeButton.className = 'cite-button';
-                citeButton.textContent = '📋 Cite this';
-                citeButton.addEventListener('click', copyCitation);
-
                 const verifyNote = document.createElement('div');
                 verifyNote.className = 'assistant-verify-note';
                 verifyNote.textContent = '📚 Always verify medical information with your textbook and course materials.';
 
-                metaDiv.appendChild(citeButton);
                 metaDiv.appendChild(verifyNote);
                 messageDiv.appendChild(metaDiv);
             }

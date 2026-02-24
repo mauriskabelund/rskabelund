@@ -666,36 +666,20 @@
     </nav>
     
     <main>
-        <div class="ai-tips-banner" id="tipsBanner">
-            <div class="tips-header" onclick="toggleTips()" role="button" tabindex="0" aria-expanded="true" aria-controls="tipsContent" id="tipsHeader">
-                <span class="tips-title">📚 About This Chat</span>
-                <span class="tips-toggle" id="tipsToggle">▼</span>
-            </div>
-            <div class="tips-content" id="tipsContent">
-                <p class="tips-reminder">This AI assistant has full context of <strong>Week 7: Nutrient Absorption in the Small Intestine</strong>, including all slides, the clinical case, and learning objectives.</p>
-                
-                <div class="tips-section">
-                    <strong>You can ask about:</strong>
-                    <ul>
-                        <li>Concepts from the lesson slides</li>
-                        <li>The clinical case (41-year-old Algerian woman with anemia)</li>
-                        <li>Celiac disease pathophysiology and diagnosis</li>
-                        <li>Nutrient absorption mechanisms</li>
-                        <li>Anything covered in this week's material</li>
-                    </ul>
-                </div>
-                
-                <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.75rem;">💡 <em>Tip: Be specific with your questions for better answers. Always verify important information with course materials.</em></p>
-            </div>
-        </div>
-        
         <div class="chat-container">
             <div class="chat-header">
                 <div class="chat-header-title">Lesson Q&A</div>
                 <span class="ai-powered-badge">📖 Week 7 Context</span>
                 <span class="ai-disclosure-note">Ask questions about this week's lesson content</span>
             </div>
-            <div class="chat-messages" id="chatMessages" role="log" aria-live="polite" aria-relevant="additions text"></div>
+            <div class="chat-messages" id="chatMessages" role="log" aria-live="polite" aria-relevant="additions text">
+                <div class="message ai">
+                    <div class="message-content">
+                        <p>👋 Hi! I'm here to help you with <strong>Week 7: Nutrient Absorption in the Small Intestine</strong>.</p>
+                        <p>Ask me anything about the lesson — the slides, the clinical case, celiac disease, absorption mechanisms, or any concepts you'd like me to explain.</p>
+                    </div>
+                </div>
+            </div>
             <div class="typing-indicator" id="typingIndicator" aria-hidden="true">
                 <span></span><span></span><span></span>
             </div>

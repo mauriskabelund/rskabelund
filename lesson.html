@@ -950,6 +950,33 @@
             color: var(--byu-navy);
         }
         
+        /* Cation transporter slide */
+        .cation-slide {
+            justify-content: flex-start;
+            padding-top: 2rem !important;
+        }
+        
+        .cation-slide h2 {
+            margin-bottom: 1.5rem;
+        }
+        
+        .spaced-bullets {
+            list-style: disc;
+            margin-left: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            flex: 1;
+            padding: 1rem 0;
+        }
+        
+        .spaced-bullets li {
+            font-size: 1.25rem;
+            line-height: 1.5;
+            color: var(--text-primary);
+            padding: 0.5rem 0;
+        }
+        
         /* Summary slide */
         .summary-slide {
             padding: 2rem 3rem !important;
@@ -2470,9 +2497,9 @@
                     
                     <!-- Slide 9: Why not cation transporter deficiency? -->
                     <div class="slide slide-content-page" data-slide="9">
-                        <div class="slide-content">
+                        <div class="slide-content cation-slide">
                             <h2>Why not cation transporter deficiency?</h2>
-                            <ul>
+                            <ul class="spaced-bullets">
                                 <li>Iron and calcium use different transporters to cross cell membranes</li>
                                 <li>These transporters are separately regulated, and deficiency of either is very rare (so being deficient in both is unlikely)</li>
                                 <li>Algerians have very high rates of celiac disease in their population (~5%), making it more likely than cation transporter deficiency</li>

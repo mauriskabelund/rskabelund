@@ -1167,10 +1167,20 @@
         }
         
         .answer-num-input {
-            flex: 0 0 28px !important;
+            flex: 0 0 32px !important;
+            width: 32px !important;
+            max-width: 32px !important;
+            min-width: 32px !important;
             text-align: center;
-            padding-left: 0.2rem !important;
-            padding-right: 0.2rem !important;
+            padding-left: 0.1rem !important;
+            padding-right: 0.1rem !important;
+            -moz-appearance: textfield;
+        }
+        
+        .answer-num-input::-webkit-outer-spin-button,
+        .answer-num-input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
         }
         
         .gaps-submit {
@@ -1663,7 +1673,10 @@
             }
             
             .answer-num-input {
-                flex: 0 0 24px !important;
+                flex: 0 0 28px !important;
+                width: 28px !important;
+                max-width: 28px !important;
+                min-width: 28px !important;
             }
             
             .gaps-footer {

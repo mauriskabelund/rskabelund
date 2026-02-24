@@ -6,7 +6,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
-    <title>AI Chat - Rachel Skabelund</title>
+    <title>Lesson Q&A | BYU School of Medicine</title>
     <style>
         * {
             margin: 0;
@@ -668,38 +668,32 @@
     <main>
         <div class="ai-tips-banner" id="tipsBanner">
             <div class="tips-header" onclick="toggleTips()" role="button" tabindex="0" aria-expanded="true" aria-controls="tipsContent" id="tipsHeader">
-                <span class="tips-title">🩺 AI for Medical Students — Quick Tips</span>
+                <span class="tips-title">📚 About This Chat</span>
                 <span class="tips-toggle" id="tipsToggle">▼</span>
             </div>
             <div class="tips-content" id="tipsContent">
-                <p class="tips-reminder"><strong>Remember:</strong> AI is a powerful learning tool, not a replacement for clinical judgment or verified medical resources.</p>
+                <p class="tips-reminder">This AI assistant has full context of <strong>Week 7: Nutrient Absorption in the Small Intestine</strong>, including all slides, the clinical case, and learning objectives.</p>
                 
                 <div class="tips-section">
-                    <strong>Use AI effectively:</strong>
+                    <strong>You can ask about:</strong>
                     <ul>
-                        <li><strong>Be specific</strong> — Include context (patient scenario, learning objective, exam type)</li>
-                        <li><strong>Ask for reasoning</strong> — "Explain why" helps you learn, not just get answers</li>
-                        <li><strong>Verify everything</strong> — Cross-reference with UpToDate, textbooks, or faculty</li>
-                        <li><strong>Practice clinically</strong> — Use AI to quiz yourself, generate differentials, or explain concepts</li>
+                        <li>Concepts from the lesson slides</li>
+                        <li>The clinical case (41-year-old Algerian woman with anemia)</li>
+                        <li>Celiac disease pathophysiology and diagnosis</li>
+                        <li>Nutrient absorption mechanisms</li>
+                        <li>Anything covered in this week's material</li>
                     </ul>
                 </div>
                 
-                <div class="tips-section">
-                    <strong>Don't use AI to:</strong>
-                    <ul>
-                        <li>Make real patient care decisions</li>
-                        <li>Replace studying primary sources</li>
-                        <li>Submit AI-generated work as your own</li>
-                    </ul>
-                </div>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.75rem;">💡 <em>Tip: Be specific with your questions for better answers. Always verify important information with course materials.</em></p>
             </div>
         </div>
         
         <div class="chat-container">
             <div class="chat-header">
-                <div class="chat-header-title">AI Assistant</div>
-                <span class="ai-powered-badge">🤖 Powered by GPT-4</span>
-                <span class="ai-disclosure-note">AI-generated learning aid. Verify with course materials.</span>
+                <div class="chat-header-title">Lesson Q&A</div>
+                <span class="ai-powered-badge">📖 Week 7 Context</span>
+                <span class="ai-disclosure-note">Ask questions about this week's lesson content</span>
             </div>
             <div class="chat-messages" id="chatMessages" role="log" aria-live="polite" aria-relevant="additions text"></div>
             <div class="typing-indicator" id="typingIndicator" aria-hidden="true">
@@ -711,7 +705,7 @@
                     type="text" 
                     class="chat-input" 
                     id="chatInput" 
-                    placeholder="Type your message..."
+                    placeholder="Ask about the lesson..."
                     onkeypress="handleKeyPress(event)"
                 >
                 <button class="chat-send" id="sendBtn" onclick="sendMessage()" aria-label="Send message">Send</button>
